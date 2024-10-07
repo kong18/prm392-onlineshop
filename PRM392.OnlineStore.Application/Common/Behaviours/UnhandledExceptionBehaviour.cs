@@ -28,7 +28,7 @@ namespace PRM392.OnlineStore.Application.Behaviours
             {
                 var requestName = typeof(TRequest).Name;
 
-                _logger.LogError(ex, "InternSystem Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+                _logger.LogError(ex, "PRM Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
 
                 throw;
             }

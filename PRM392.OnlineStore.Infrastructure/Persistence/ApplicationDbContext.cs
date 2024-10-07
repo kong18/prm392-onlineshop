@@ -8,6 +8,10 @@ namespace PRM392.OnlineStore.Infrastructure.Persistence
 {
     public class ApplicationDbContext : DbContext, IUnitOfWork
     {
+        public ApplicationDbContext()
+        {
+
+        }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             var migrator = this.Database.GetService<IMigrator>();

@@ -26,7 +26,7 @@ namespace PRM392_OnlineStore.Api.Configuration
         {
             var info = new OpenApiInfo()
             {
-                Title = "OrderingKiosksystem API",
+                Title = "PRM392OnlineStore API",
                 Version = description.ApiVersion.ToString()
             };
 

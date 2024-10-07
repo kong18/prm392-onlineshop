@@ -24,9 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PRM392_OnlineStore_Application\PRM392.OnlineStore.Application.csproj" />
-    <ProjectReference Include="..\PRM392_OnlineStore_Domain\PRM392.OnlineStore.Domain.csproj" />
-    <ProjectReference Include="..\PRM392_OnlineStore_Infrastructure\PRM392.OnlineStore.Infrastructure.csproj" />
+    <ProjectReference Include="..\PRM392.OnlineStore.Application\PRM392.OnlineStore.Application.csproj" />
+    <ProjectReference Include="..\PRM392.OnlineStore.Domain\PRM392.OnlineStore.Domain.csproj" />
+    <ProjectReference Include="..\PRM392.OnlineStore.Infrastructure\PRM392.OnlineStore.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -67,7 +67,7 @@ namespace PRM392_OnlineStore.Api.Configuration
                 options =>
                 {
                     options.RoutePrefix = "swagger";
-                    options.OAuthAppName("OrderingKiosksystem API");
+                    options.OAuthAppName("PRM392OnlineStore API");
                     options.EnableDeepLinking();
                     options.DisplayOperationId();
                     options.DefaultModelsExpandDepth(-1);

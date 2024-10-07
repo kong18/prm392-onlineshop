@@ -25,18 +25,8 @@ namespace PRM392.OnlineStore.Infrastructure
 
             services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
-            //services.AddTransient<IUserRepository, UserRepository>();
-            //services.AddTransient<IOrderRepository, OrderRepository>();
-            //services.AddTransient<IReaderRepository,ReaderRepository>();
-            //services.AddTransient<IOrderDetailRepository, OrderDetailRepository>();
-            //services.AddTransient<IProductRepository, ProductRepository>();
-            //services.AddTransient<ITarotCardRepository, TarotCardRepository>();
-            //services.AddTransient<IFavoriteProductRepository, FavoriteProductRepository>();
-            //services.AddTransient<IPackageQuestionRepository, PackageQuestionRepository>();
-            //services.AddTransient<IFeedBackRepository, FeedBackRepository>();
-            services.AddAutoMapper(typeof(ApplicationDbContext));
-
             return services;
         }
+
     }
 }
