@@ -45,9 +45,7 @@ bin/
 obj/
 out/
 
-# Secrets
-appsettings.json
-appsettings.Development.json
+
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
