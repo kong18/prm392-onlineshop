@@ -1,0 +1,87 @@
+# User-specific files
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+*.tlog
+
+# Auto-generated files
+*.class
+*.dll
+*.exe
+*.pdb
+*.obj
+*.cache
+*.csproj.user
+*.sln.user
+
+# NuGet Packages
+**/packages/
+# Uncomment if you have NuGet Package Restore enabled
+#!**/packages/repositories.config
+
+# Project files
+*.psess
+*.vspxproj
+
+# DotNet core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Microsoft Visual Studio
+.vs/
+.vscode/
+*.vcxproj.user
+*.vcxproj.filters
+
+# Build results
+bin/
+obj/
+out/
+
+# Secrets
+appsettings.json
+appsettings.Development.json
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Entity Framework
+**/Migrations/
+
+# SQL Server
+*.mdf
+*.ldf
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.env
+
+# Mac OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+
+# Windows image file caches
+*.stackdump
+
+# Coverage results
+coverage/
+*.coverage
+*.coveragexml
+*.opencover.xml
+
+# Publish outputs
+*.Publish.xml
