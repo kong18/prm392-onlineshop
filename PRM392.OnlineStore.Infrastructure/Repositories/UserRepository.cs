@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using PRM392.OnlineStore.Domain.Entities.Base;
+using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Persistence;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PRM392.OnlineStore.Infrastructure.Repositories
 {
-    public class UserRepository : RepositoryBase<UserEntity, UserEntity, ApplicationDbContext>, IUserRepository
+    public class UserRepository : RepositoryBase<User, User, ApplicationDbContext>, IUserRepository
     {
         public UserRepository(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {

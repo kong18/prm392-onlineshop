@@ -7,9 +7,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using PRM392_OnlineStore_Domain.Interfaces;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Repositories;
+using PRM392.OnlineStore.Domain.Common.Interfaces;
 
 namespace PRM392.OnlineStore.Infrastructure.Repositories
 {

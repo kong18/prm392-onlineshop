@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PRM392.OnlineStore.Domain.Common.Interfaces;
 using PRM392.OnlineStore.Infrastructure.Persistence;
-using PRM392_OnlineStore_Domain.Interfaces;
 
 namespace PRM392.OnlineStore.Infrastructure
 {

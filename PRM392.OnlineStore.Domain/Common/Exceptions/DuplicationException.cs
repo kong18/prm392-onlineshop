@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRM392_OnlineStore_Domain.Exceptions
+namespace PRM392.OnlineStore.Domain.Common.Exceptions
 {
     public class DuplicationException : Exception
     {

@@ -1,4 +1,4 @@
-﻿using PRM392_OnlineStore_Domain.Interfaces;
+﻿using PRM392.OnlineStore.Domain.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

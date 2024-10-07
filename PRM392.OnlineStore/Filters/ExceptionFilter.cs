@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using FluentValidation;
 using PRM392.OnlineStore.Application.Exceptions;
-using PRM392_OnlineStore_Domain.Exceptions;
+using PRM392.OnlineStore.Domain.Common.Exceptions;
 
 namespace PRM392_OnlineStore.Api.Filters
 {

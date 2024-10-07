@@ -1,0 +1,145 @@
+2024-10-07 20:32:09.735 +07:00 [INF] Executed DbCommand (243ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [SalesAppDB];
+2024-10-07 20:32:09.880 +07:00 [INF] Executed DbCommand (94ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [SalesAppDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2024-10-07 20:32:09.907 +07:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-07 20:32:10.002 +07:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2024-10-07 20:32:10.005 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-07 20:32:10.025 +07:00 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-10-07 20:32:10.036 +07:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-10-07 20:32:10.048 +07:00 [INF] Applying migration '20241007133156_v1'.
+2024-10-07 20:32:10.124 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Categories] (
+    [CategoryID] int NOT NULL IDENTITY,
+    [CategoryName] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK__Categori__19093A2BA147EEE1] PRIMARY KEY ([CategoryID])
+);
+2024-10-07 20:32:10.126 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [StoreLocations] (
+    [LocationID] int NOT NULL IDENTITY,
+    [Latitude] decimal(9,6) NOT NULL,
+    [Longitude] decimal(9,6) NOT NULL,
+    [Address] nvarchar(255) NOT NULL,
+    CONSTRAINT [PK__StoreLoc__E7FEA4779CA8FC05] PRIMARY KEY ([LocationID])
+);
+2024-10-07 20:32:10.129 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [UserID] int NOT NULL IDENTITY,
+    [Username] nvarchar(50) NOT NULL,
+    [PasswordHash] nvarchar(255) NOT NULL,
+    [Email] nvarchar(100) NOT NULL,
+    [PhoneNumber] nvarchar(15) NULL,
+    [Address] nvarchar(255) NULL,
+    [Role] nvarchar(50) NOT NULL,
+    CONSTRAINT [PK__Users__1788CCAC21F76469] PRIMARY KEY ([UserID])
+);
+2024-10-07 20:32:10.134 +07:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Products] (
+    [ProductID] int NOT NULL IDENTITY,
+    [ProductName] nvarchar(100) NOT NULL,
+    [BriefDescription] nvarchar(255) NULL,
+    [FullDescription] nvarchar(max) NULL,
+    [TechnicalSpecifications] nvarchar(max) NULL,
+    [Price] decimal(18,2) NOT NULL,
+    [ImageURL] nvarchar(255) NULL,
+    [CategoryID] int NULL,
+    CONSTRAINT [PK__Products__B40CC6ED098ACCE2] PRIMARY KEY ([ProductID]),
+    CONSTRAINT [FK__Products__Catego__3B75D760] FOREIGN KEY ([CategoryID]) REFERENCES [Categories] ([CategoryID])
+);
+2024-10-07 20:32:10.136 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [CartID] int NOT NULL IDENTITY,
+    [UserID] int NULL,
+    [TotalPrice] decimal(18,2) NOT NULL,
+    [Status] nvarchar(50) NOT NULL,
+    CONSTRAINT [PK__Carts__51BCD79715BE33A0] PRIMARY KEY ([CartID]),
+    CONSTRAINT [FK__Carts__UserID__3E52440B] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID])
+);
+2024-10-07 20:32:10.139 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ChatMessages] (
+    [ChatMessageID] int NOT NULL IDENTITY,
+    [UserID] int NULL,
+    [Message] nvarchar(max) NULL,
+    [SentAt] datetime NOT NULL DEFAULT ((getdate())),
+    CONSTRAINT [PK__ChatMess__9AB61055FB5E89DB] PRIMARY KEY ([ChatMessageID]),
+    CONSTRAINT [FK__ChatMessa__UserI__534D60F1] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID])
+);
+2024-10-07 20:32:10.142 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notifications] (
+    [NotificationID] int NOT NULL IDENTITY,
+    [UserID] int NULL,
+    [Message] nvarchar(255) NULL,
+    [IsRead] bit NOT NULL,
+    [CreatedAt] datetime NOT NULL DEFAULT ((getdate())),
+    CONSTRAINT [PK__Notifica__20CF2E320E7EBCA6] PRIMARY KEY ([NotificationID]),
+    CONSTRAINT [FK__Notificat__UserI__4F7CD00D] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID])
+);
+2024-10-07 20:32:10.144 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartItems] (
+    [CartItemID] int NOT NULL IDENTITY,
+    [CartID] int NULL,
+    [ProductID] int NULL,
+    [Quantity] int NOT NULL,
+    [Price] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK__CartItem__488B0B2ACFA5F688] PRIMARY KEY ([CartItemID]),
+    CONSTRAINT [FK__CartItems__CartI__412EB0B6] FOREIGN KEY ([CartID]) REFERENCES [Carts] ([CartID]),
+    CONSTRAINT [FK__CartItems__Produ__4222D4EF] FOREIGN KEY ([ProductID]) REFERENCES [Products] ([ProductID])
+);
+2024-10-07 20:32:10.147 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Orders] (
+    [OrderID] int NOT NULL IDENTITY,
+    [CartID] int NULL,
+    [UserID] int NULL,
+    [PaymentMethod] nvarchar(50) NOT NULL,
+    [BillingAddress] nvarchar(255) NOT NULL,
+    [OrderStatus] nvarchar(50) NOT NULL,
+    [OrderDate] datetime NOT NULL DEFAULT ((getdate())),
+    CONSTRAINT [PK__Orders__C3905BAF7427A975] PRIMARY KEY ([OrderID]),
+    CONSTRAINT [FK__Orders__CartID__45F365D3] FOREIGN KEY ([CartID]) REFERENCES [Carts] ([CartID]),
+    CONSTRAINT [FK__Orders__UserID__46E78A0C] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID])
+);
+2024-10-07 20:32:10.176 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Payments] (
+    [PaymentID] int NOT NULL IDENTITY,
+    [OrderID] int NULL,
+    [Amount] decimal(18,2) NOT NULL,
+    [PaymentDate] datetime NOT NULL DEFAULT ((getdate())),
+    [PaymentStatus] nvarchar(50) NOT NULL,
+    CONSTRAINT [PK__Payments__9B556A5816F52A86] PRIMARY KEY ([PaymentID]),
+    CONSTRAINT [FK__Payments__OrderI__4AB81AF0] FOREIGN KEY ([OrderID]) REFERENCES [Orders] ([OrderID])
+);
+2024-10-07 20:32:10.181 +07:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_CartID] ON [CartItems] ([CartID]);
+2024-10-07 20:32:10.182 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_ProductID] ON [CartItems] ([ProductID]);
+2024-10-07 20:32:10.184 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Carts_UserID] ON [Carts] ([UserID]);
+2024-10-07 20:32:10.186 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ChatMessages_UserID] ON [ChatMessages] ([UserID]);
+2024-10-07 20:32:10.187 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notifications_UserID] ON [Notifications] ([UserID]);
+2024-10-07 20:32:10.187 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_CartID] ON [Orders] ([CartID]);
+2024-10-07 20:32:10.189 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_UserID] ON [Orders] ([UserID]);
+2024-10-07 20:32:10.190 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Payments_OrderID] ON [Payments] ([OrderID]);
+2024-10-07 20:32:10.192 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Products_CategoryID] ON [Products] ([CategoryID]);
+2024-10-07 20:32:10.196 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20241007133156_v1', N'8.0.8');
