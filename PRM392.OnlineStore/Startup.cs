@@ -1,4 +1,6 @@
-﻿using PRM392.OnlineStore.Application;
+﻿using PRM392.OnlineStore.Api.Services;
+using PRM392.OnlineStore.Application;
+using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure;
 using PRM392_OnlineStore.Api.Configuration;
 using PRM392_OnlineStore.Api.Filters;
@@ -18,7 +20,9 @@ namespace PRM392_OnlineStore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers(opt => opt.Filters.Add(typeof(ExceptionFilter)));
-
+            services.AddScoped<IChatService, ChatService>();
+            services.AddScoped<IChatMessageRepository, ChatMessageRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSignalR();
             //services.AddScoped<OrderService>();
             services.AddApplication(Configuration);
@@ -77,6 +81,7 @@ namespace PRM392_OnlineStore.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chatHub");
                 //endpoints.MapHub<NotificationHub>("/notificationHub");
 
             });
