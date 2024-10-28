@@ -88,6 +88,7 @@ public partial class ApplicationDbContext : DbContext, IUnitOfWork
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime");
             entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.Property(e => e.RecipientId).HasColumnName("RecipientID");
 
             entity.HasOne(d => d.User).WithMany(p => p.ChatMessages)
                 .HasForeignKey(d => d.UserId)
