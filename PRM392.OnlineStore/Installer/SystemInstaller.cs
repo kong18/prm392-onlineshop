@@ -37,19 +37,6 @@ namespace PRM392.OnlineStore.Api.Installer
 
             // Register System.Text.Encoding
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-            var firebaseSection = configuration.GetSection("FirebaseConfig");
-            if (!firebaseSection.Exists())
-            {
-                throw new ArgumentNullException("FirebaseConfig section does not exist in configuration.");
-            }
-
-            var firebaseConfig = firebaseSection.Get<FirebaseConfig>();
-            if (firebaseConfig == null)
-            {
-                throw new ArgumentNullException(nameof(firebaseConfig), "FirebaseConfig section is missing in configuration.");
-            }
-            services.AddSingleton(firebaseConfig);
-            services.AddSingleton<FileUploadService>();
         }
     }
 }
