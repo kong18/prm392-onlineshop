@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PRM392.OnlineStore.Domain.Common.Interfaces;
+using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Persistence;
+using PRM392.OnlineStore.Infrastructure.Repositories;
 
 namespace PRM392.OnlineStore.Infrastructure
 {
@@ -24,7 +26,9 @@ namespace PRM392.OnlineStore.Infrastructure
             });
 
             services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<ApplicationDbContext>());
-
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+           
             return services;
         }
 

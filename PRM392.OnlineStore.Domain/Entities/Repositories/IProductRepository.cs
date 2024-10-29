@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace PRM392.OnlineStore.Domain.Entities.Repositories
 {
-    public interface IUserRepository : IEFRepository<User, User>
+    public interface IProductRepository : IEFRepository<Product,Product>
     {
-        string HashPassword(string password);
-        bool VerifyPassword(string password, string passwordHash);
-        string GeneratePassword();
-
     }
 }

@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-
-using PRM392.OnlineStore.Domain.Entities.Base;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Persistence;
