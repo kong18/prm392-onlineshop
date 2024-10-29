@@ -10,6 +10,7 @@ public partial class Order
     public int? CartId { get; set; }
 
     public int? UserId { get; set; }
+    public int? LocationId { get; set; }
 
     public string PaymentMethod { get; set; } = null!;
 
@@ -22,6 +23,7 @@ public partial class Order
     public virtual Cart? Cart { get; set; }
 
     public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
-
+    public virtual StoreLocation? StoreLocation { get; set; }
     public virtual User? User { get; set; }
+
 }

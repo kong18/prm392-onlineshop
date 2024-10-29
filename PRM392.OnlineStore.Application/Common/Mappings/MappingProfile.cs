@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using PRM392.OnlineStore.Application.Common.DTO;
+using PRM392.OnlineStore.Domain.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace PRM392.OnlineStore.Application.Mappings
     {
         public MappingProfile()
         {
+            CreateMap<ChatMessage, ChatMessageDto>();
             ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
