@@ -1,4 +1,5 @@
-﻿using PRM392.OnlineStore.Api.Services;
+﻿using PRM392.OnlineStore.Api.Installer;
+using PRM392.OnlineStore.Api.Services;
 using PRM392.OnlineStore.Application;
 using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure;
@@ -19,47 +20,7 @@ namespace PRM392_OnlineStore.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(opt => opt.Filters.Add(typeof(ExceptionFilter)));
-            services.AddScoped<IChatService, ChatService>();
-            services.AddScoped<IChatMessageRepository, ChatMessageRepository>();
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSignalR();
-            //services.AddScoped<OrderService>();
-            services.AddApplication(Configuration);
-            services.ConfigureApplicationSecurity(Configuration);
-            services.ConfigureProblemDetails();
-            services.ConfigureApiVersioning();
-            services.AddInfrastructure(Configuration);
-            services.ConfigureSwagger(Configuration);
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                        .WithOrigins("https://localhost:7024")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials());
-            });
-
-            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-
-            // Additional logging
-            //    var firebaseSection = Configuration.GetSection("FirebaseConfig");
-            //    if (!firebaseSection.Exists())
-            //    {
-            //        throw new ArgumentNullException("FirebaseConfig section does not exist in configuration.");
-            //    }
-
-            //    var firebaseConfig = firebaseSection.Get<FirebaseConfig>();
-            //    if (firebaseConfig == null)
-            //    {
-            //        throw new ArgumentNullException(nameof(firebaseConfig), "FirebaseConfig section is missing in configuration.");
-            //    }
-
-            //    services.AddSingleton(firebaseConfig);
-            //    services.AddSingleton<FileUploadService>();
-            //}
+            services.InstallerServicesInAssembly(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
