@@ -12,4 +12,5 @@ public partial class StoreLocation
     public decimal Longitude { get; set; }
 
     public string Address { get; set; } = null!;
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }
