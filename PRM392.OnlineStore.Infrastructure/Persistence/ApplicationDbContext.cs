@@ -132,6 +132,10 @@ public partial class ApplicationDbContext : DbContext, IUnitOfWork
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK__Orders__UserID__46E78A0C");
+
+            entity.HasOne(d => d.StoreLocation).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.LocationId)
+                .HasConstraintName("FK__Orders__LocationID__45F365D3");
         });
 
         modelBuilder.Entity<Payment>(entity =>
@@ -177,6 +181,7 @@ public partial class ApplicationDbContext : DbContext, IUnitOfWork
             entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.Latitude).HasColumnType("decimal(9, 6)");
             entity.Property(e => e.Longitude).HasColumnType("decimal(9, 6)");
+
         });
 
         modelBuilder.Entity<User>(entity =>
