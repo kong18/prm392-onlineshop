@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.IdentityModel.Tokens;
+using PRM392.OnlineStore.Api.Services;
 using PRM392.OnlineStore.Application.Interfaces;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Repositories;
-using PRM392_OnlineStore.Api.Services;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
-namespace PRM392_OnlineStore.Api.Configuration
+namespace PRM392.OnlineStore.Api.Configuration
 {
     public static class ApplicationSecurityConfiguration
     {
@@ -45,7 +45,7 @@ namespace PRM392_OnlineStore.Api.Configuration
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("from sonhohuu deptrai6mui with love")),
                 };
             })
-       
+
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme); // Ensure cookies are used
 
             services.AddAuthorization(ConfigureAuthorization);
@@ -57,7 +57,7 @@ namespace PRM392_OnlineStore.Api.Configuration
         {
             // Configure policies and other authorization options here. For example:
             // options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("role", "employee"));
-           
+
         }
     }
 }

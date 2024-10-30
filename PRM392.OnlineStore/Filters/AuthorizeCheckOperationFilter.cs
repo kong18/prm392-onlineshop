@@ -2,7 +2,7 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace PRM392_OnlineStore.Api.Filters
+namespace PRM392.OnlineStore.Api.Filters
 {
     public class AuthorizeCheckOperationFilter : IOperationFilter
     {

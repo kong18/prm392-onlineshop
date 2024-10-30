@@ -1,7 +1,7 @@
 ﻿using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
-namespace PRM392_OnlineStore.Api.Configuration
+namespace PRM392.OnlineStore.Api.Configuration
 {
     public static class HealthChecksConfiguration
     {

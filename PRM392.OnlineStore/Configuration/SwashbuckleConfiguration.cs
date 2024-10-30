@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using PRM392.OnlineStore.Api.Filters;
 using PRM392.OnlineStore.Infrastructure;
-using PRM392_OnlineStore.Api.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Reflection;
 
-namespace PRM392_OnlineStore.Api.Configuration
+namespace PRM392.OnlineStore.Api.Configuration
 {
     public static class SwashbuckleConfiguration
     {

@@ -6,7 +6,7 @@ using FluentValidation;
 using PRM392.OnlineStore.Application.Exceptions;
 using PRM392.OnlineStore.Domain.Common.Exceptions;
 
-namespace PRM392_OnlineStore.Api.Filters
+namespace PRM392.OnlineStore.Api.Filters
 {
     public class ExceptionFilter : IExceptionFilter
     {

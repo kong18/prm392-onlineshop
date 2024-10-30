@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace PRM392_OnlineStore.Api.Configuration
+namespace PRM392.OnlineStore.Api.Configuration
 {
     public class ApiVersionSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
     {

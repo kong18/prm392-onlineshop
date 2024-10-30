@@ -119,6 +119,10 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RecipientId")
+                        .HasColumnType("int")
+                        .HasColumnName("RecipientID");
+
                     b.Property<DateTime>("SentAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
@@ -187,6 +191,9 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CartID");
 
+                    b.Property<int?>("LocationId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("OrderDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
@@ -210,6 +217,8 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                         .HasName("PK__Orders__C3905BAF7427A975");
 
                     b.HasIndex("CartId");
+
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("UserId");
 
@@ -267,6 +276,12 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasColumnName("CategoryID");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FullDescription")
                         .HasColumnType("nvarchar(max)");
 
@@ -285,6 +300,9 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
 
                     b.Property<string>("TechnicalSpecifications")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("ProductId")
                         .HasName("PK__Products__B40CC6ED098ACCE2");
@@ -417,12 +435,19 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                         .HasForeignKey("CartId")
                         .HasConstraintName("FK__Orders__CartID__45F365D3");
 
+                    b.HasOne("PRM392.OnlineStore.Domain.Entities.Models.StoreLocation", "StoreLocation")
+                        .WithMany("Orders")
+                        .HasForeignKey("LocationId")
+                        .HasConstraintName("FK__Orders__LocationID__45F365D3");
+
                     b.HasOne("PRM392.OnlineStore.Domain.Entities.Models.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK__Orders__UserID__46E78A0C");
 
                     b.Navigation("Cart");
+
+                    b.Navigation("StoreLocation");
 
                     b.Navigation("User");
                 });
@@ -467,6 +492,11 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
             modelBuilder.Entity("PRM392.OnlineStore.Domain.Entities.Models.Product", b =>
                 {
                     b.Navigation("CartItems");
+                });
+
+            modelBuilder.Entity("PRM392.OnlineStore.Domain.Entities.Models.StoreLocation", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("PRM392.OnlineStore.Domain.Entities.Models.User", b =>

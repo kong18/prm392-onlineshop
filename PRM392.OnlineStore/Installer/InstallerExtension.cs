@@ -1,6 +1,4 @@
-﻿using PRM392_OnlineStore.Api;
-
-namespace PRM392.OnlineStore.Api.Installer
+﻿namespace PRM392.OnlineStore.Api.Installer
 {
     public static class InstallerExtension
     {

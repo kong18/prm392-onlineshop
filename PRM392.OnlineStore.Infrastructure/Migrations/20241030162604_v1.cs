@@ -69,6 +69,9 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                     TechnicalSpecifications = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImageURL = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CategoryID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -108,6 +111,7 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                     ChatMessageID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserID = table.Column<int>(type: "int", nullable: true),
+                    RecipientID = table.Column<int>(type: "int", nullable: true),
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SentAt = table.Column<DateTime>(type: "datetime", nullable: false, defaultValueSql: "(getdate())")
                 },
@@ -176,6 +180,7 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CartID = table.Column<int>(type: "int", nullable: true),
                     UserID = table.Column<int>(type: "int", nullable: true),
+                    LocationId = table.Column<int>(type: "int", nullable: true),
                     PaymentMethod = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     BillingAddress = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     OrderStatus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -189,6 +194,11 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                         column: x => x.CartID,
                         principalTable: "Carts",
                         principalColumn: "CartID");
+                    table.ForeignKey(
+                        name: "FK__Orders__LocationID__45F365D3",
+                        column: x => x.LocationId,
+                        principalTable: "StoreLocations",
+                        principalColumn: "LocationID");
                     table.ForeignKey(
                         name: "FK__Orders__UserID__46E78A0C",
                         column: x => x.UserID,
@@ -248,6 +258,11 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                 column: "CartID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_LocationId",
+                table: "Orders",
+                column: "LocationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserID",
                 table: "Orders",
                 column: "UserID");
@@ -279,9 +294,6 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "StoreLocations");
-
-            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
@@ -292,6 +304,9 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Carts");
+
+            migrationBuilder.DropTable(
+                name: "StoreLocations");
 
             migrationBuilder.DropTable(
                 name: "Users");

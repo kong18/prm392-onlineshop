@@ -25,7 +25,7 @@ namespace PRM392.OnlineStore.Application.Products.Create
 
         public async Task<string> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
-            var categoryExist = _categoryRepository.FindAsync(x => x.CategoryId == request.CategoryId);
+            var categoryExist = await _categoryRepository.FindAsync(x => x.CategoryId == request.CategoryId);
             if (categoryExist is null)
             {
                 throw new NotFoundException("Category does not exist");
@@ -47,7 +47,7 @@ namespace PRM392.OnlineStore.Application.Products.Create
             var p = new Product
             {
                 ImageUrl = imageurl,
-                CategoryId = categoryExist.Id,
+                CategoryId = categoryExist.CategoryId,
                 BriefDescription = request.BriefDescription,
                 FullDescription = request.FullDescription,
                 ProductName = request.Name,
