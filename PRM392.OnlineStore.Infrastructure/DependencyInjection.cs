@@ -29,6 +29,7 @@ namespace PRM392.OnlineStore.Infrastructure
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<INotificationRepository, NotificationRepository>();
            
             return services;
         }
