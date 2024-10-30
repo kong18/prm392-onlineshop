@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace PRM392.OnlineStore.Domain.Entities.Models;
 
 public partial class ChatMessage
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
     public int ChatMessageId { get; set; }
 
     public int? UserId { get; set; }
