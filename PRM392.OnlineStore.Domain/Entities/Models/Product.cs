@@ -21,6 +21,8 @@ public partial class Product
 
     public DateTime? DeletedAt {  get; set; } 
     public DateTime? CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+
     public int? CategoryId { get; set; }
 
     public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();

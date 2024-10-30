@@ -1,16 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PRM392.OnlineStore.Application.Products.Create
+namespace PRM392.OnlineStore.Application.Products.Update
 {
-    public class CreateProductCommand : IRequest<string>
+    public class UpdateProductCommand : IRequest<string>
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public string ?Name { get; set; }
 
         public string? BriefDescription { get; set; }
 
@@ -18,9 +13,10 @@ namespace PRM392.OnlineStore.Application.Products.Create
 
         public string? TechnicalSpecifications { get; set; }
 
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
         public IFormFile? ImageUrl { get; set; }
 
         public int? CategoryId { get; set; }
+
     }
 }
