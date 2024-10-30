@@ -12,14 +12,14 @@ namespace PRM392.OnlineStore.Application.Products.Create
 {
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, string>
     {
-        private readonly IProductRepository _productRepository; 
-       private readonly ICategoryRepository _categoryRepository;
+        private readonly IProductRepository _productRepository;
+        private readonly ICategoryRepository _categoryRepository;
         public CreateProductCommandHandler(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
         }
-    
+
         public async Task<string> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
             var categoryExist = _categoryRepository.FindAsync(x => x.CategoryId == request.CategoryId);
@@ -28,7 +28,7 @@ namespace PRM392.OnlineStore.Application.Products.Create
                 throw new NotFoundException("Category does not exist");
             }
 
-            bool productExist = await _productRepository.AnyAsync(x=> x.ProductName == request.Name && !x.DeletedAt.HasValue, cancellationToken);
+            bool productExist = await _productRepository.AnyAsync(x => x.ProductName == request.Name && !x.DeletedAt.HasValue, cancellationToken);
             if (productExist)
             {
                 throw new DuplicationException("Same product has been existed");
@@ -44,7 +44,7 @@ namespace PRM392.OnlineStore.Application.Products.Create
             };
 
             _productRepository.Add(p);
-             return await _productRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? "Create Success!" : "Create Fail!";
+            return await _productRepository.UnitOfWork.SaveChangesAsync(cancellationToken) > 0 ? "Create Success!" : "Create Fail!";
         }
     }
 }

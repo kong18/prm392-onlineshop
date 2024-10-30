@@ -33,4 +33,10 @@
     <ProjectReference Include="..\PRM392.OnlineStore.Infrastructure\PRM392.OnlineStore.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CartItems\Queries\" />
+    <Folder Include="Carts\Commands\" />
+    <Folder Include="Carts\Queries\" />
+  </ItemGroup>
+
 </Project>
