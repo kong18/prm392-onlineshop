@@ -28,7 +28,8 @@ namespace PRM392.OnlineStore.Infrastructure
             services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<ApplicationDbContext>());
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
-           
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+
             return services;
         }
 
