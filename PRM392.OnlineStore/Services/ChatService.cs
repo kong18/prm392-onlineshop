@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using PRM392.OnlineStore.Application.Common.DTO;
-using PRM392.OnlineStore.Domain.Entities.Models;
-using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
 using Microsoft.AspNetCore.SignalR;
+using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
+using PRM392.OnlineStore.Domain.Entities.Models;
 
 namespace PRM392.OnlineStore.Api.Services
 {

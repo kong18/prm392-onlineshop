@@ -6,6 +6,9 @@ using PRM392.OnlineStore.Infrastructure;
 using PRM392.OnlineStore.Application.FileUpload;
 using PRM392.OnlineStore.Api.Services;
 using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
+using PRM392.OnlineStore.Domain.Entities.Repositories;
+using PRM392.OnlineStore.Application.Common.Interfaces;
+using PRM392.OnlineStore.Infrastructure.Repositories;
 namespace PRM392.OnlineStore.Api.Installer
 {
     public class SystemInstaller : IInstaller
@@ -24,6 +27,8 @@ namespace PRM392.OnlineStore.Api.Installer
             services.ConfigureSwagger(configuration);
             services.AddScoped<IChatService, ChatService>();
             services.AddScoped<IChatMessageRepository, ChatMessageRepository>();
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
             // CORS policy
             services.AddCors(options =>
             {
