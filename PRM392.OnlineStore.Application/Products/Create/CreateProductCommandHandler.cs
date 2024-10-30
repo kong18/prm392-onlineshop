@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PRM392.OnlineStore.Application.FileUpload;
 using PRM392.OnlineStore.Domain.Common.Exceptions;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
@@ -14,10 +15,12 @@ namespace PRM392.OnlineStore.Application.Products.Create
     {
         private readonly IProductRepository _productRepository; 
        private readonly ICategoryRepository _categoryRepository;
-        public CreateProductCommandHandler(IProductRepository productRepository, ICategoryRepository categoryRepository)
+        private readonly FileUploadService _fileUploadService;
+        public CreateProductCommandHandler(IProductRepository productRepository, ICategoryRepository categoryRepository, FileUploadService fileUploadService)
         {
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
+            _fileUploadService = fileUploadService;
         }
     
         public async Task<string> Handle(CreateProductCommand request, CancellationToken cancellationToken)
@@ -33,9 +36,17 @@ namespace PRM392.OnlineStore.Application.Products.Create
             {
                 throw new DuplicationException("Same product has been existed");
             }
+            string imageurl = string.Empty;
+            if(request.ImageUrl != null)
+            {
+                using(var stream = request.ImageUrl.OpenReadStream())
+                {
+                    imageurl = await _fileUploadService.UploadFileAsync(stream, $"{Guid.NewGuid()}.jpg");
+                }
+            }
             var p = new Product
             {
-                ProductId = request.Id,
+                ImageUrl = imageurl,
                 CategoryId = categoryExist.Id,
                 BriefDescription = request.BriefDescription,
                 FullDescription = request.FullDescription,
