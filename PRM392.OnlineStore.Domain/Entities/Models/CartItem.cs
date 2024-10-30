@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace PRM392.OnlineStore.Domain.Entities.Models;
 
 public partial class CartItem
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key]
     public int CartItemId { get; set; }
 
     public int? CartId { get; set; }

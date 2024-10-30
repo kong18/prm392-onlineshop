@@ -1,41 +1,208 @@
-2024-10-30 08:24:36.111 +07:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
-2024-10-30 08:24:37.424 +07:00 [INF] Now listening on: https://localhost:7210
-2024-10-30 08:24:37.433 +07:00 [INF] Application started. Press Ctrl+C to shut down.
-2024-10-30 08:24:37.435 +07:00 [INF] Hosting environment: Production
-2024-10-30 08:24:37.436 +07:00 [INF] Content root path: D:\prm392-onlineshop\PRM392.OnlineStore
-2024-10-30 08:24:40.793 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger - null null
-2024-10-30 08:24:41.792 +07:00 [INF] HTTP GET /swagger responded 301 in 770.1110 ms
-2024-10-30 08:24:41.802 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger - 301 0 null 1018.6653ms
-2024-10-30 08:24:41.812 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/index.html - null null
-2024-10-30 08:24:41.970 +07:00 [INF] HTTP GET /swagger/index.html responded 200 in 148.6909 ms
-2024-10-30 08:24:41.973 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/index.html - 200 null text/html;charset=utf-8 160.7327ms
-2024-10-30 08:24:42.002 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/swagger-ui.css - null null
-2024-10-30 08:24:42.002 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/index.css - null null
-2024-10-30 08:24:42.004 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/swagger-ui-bundle.js - null null
-2024-10-30 08:24:42.004 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/swagger-ui-standalone-preset.js - null null
-2024-10-30 08:24:42.004 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/index.js - null null
-2024-10-30 08:24:42.004 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/_framework/aspnetcore-browser-refresh.js - null null
-2024-10-30 08:24:42.035 +07:00 [INF] HTTP GET /swagger/index.js responded 200 in 1.1645 ms
-2024-10-30 08:24:42.051 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/index.js - 200 null application/javascript;charset=utf-8 47.1145ms
-2024-10-30 08:24:42.052 +07:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
-2024-10-30 08:24:42.072 +07:00 [INF] HTTP GET /swagger/index.css responded 200 in 51.0194 ms
-2024-10-30 08:24:42.082 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/index.css - 200 202 text/css 76.0873ms
-2024-10-30 08:24:42.086 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 82.83ms
-2024-10-30 08:24:42.108 +07:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
-2024-10-30 08:24:42.108 +07:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
-2024-10-30 08:24:42.117 +07:00 [INF] HTTP GET /swagger/swagger-ui-standalone-preset.js responded 200 in 88.1542 ms
-2024-10-30 08:24:42.117 +07:00 [INF] HTTP GET /swagger/swagger-ui.css responded 200 in 99.5929 ms
-2024-10-30 08:24:42.121 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/swagger-ui-standalone-preset.js - 200 230293 text/javascript 117.5567ms
-2024-10-30 08:24:42.126 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/swagger-ui.css - 200 152034 text/css 123.5879ms
-2024-10-30 08:24:42.132 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/_vs/browserLink - null null
-2024-10-30 08:24:42.136 +07:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
-2024-10-30 08:24:42.146 +07:00 [INF] HTTP GET /swagger/swagger-ui-bundle.js responded 200 in 121.2778 ms
-2024-10-30 08:24:42.148 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/swagger-ui-bundle.js - 200 1452753 text/javascript 144.3831ms
-2024-10-30 08:24:42.254 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/_vs/browserLink - 200 null text/javascript; charset=UTF-8 122.5184ms
-2024-10-30 08:24:42.426 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/v1/swagger.json - null null
-2024-10-30 08:24:42.459 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/favicon-32x32.png - null null
-2024-10-30 08:24:42.463 +07:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
-2024-10-30 08:24:42.465 +07:00 [INF] HTTP GET /swagger/favicon-32x32.png responded 200 in 2.9383 ms
-2024-10-30 08:24:42.468 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/favicon-32x32.png - 200 628 image/png 9.7756ms
-2024-10-30 08:24:42.626 +07:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 196.8011 ms
-2024-10-30 08:24:42.630 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 204.344ms
+2024-10-30 08:07:05.786 +07:00 [INF] User profile is available. Using 'C:\Users\sonho\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-30 08:07:06.814 +07:00 [INF] Now listening on: https://localhost:7210
+2024-10-30 08:07:06.821 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-30 08:07:06.822 +07:00 [INF] Hosting environment: Production
+2024-10-30 08:07:06.823 +07:00 [INF] Content root path: D:\PRM392\prm392-onlineshop\PRM392.OnlineStore
+2024-10-30 08:07:08.245 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/index.html - null null
+2024-10-30 08:07:08.962 +07:00 [INF] HTTP GET /swagger/index.html responded 200 in 546.6249 ms
+2024-10-30 08:07:08.969 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/index.html - 200 null text/html;charset=utf-8 729.3689ms
+2024-10-30 08:07:09.000 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/index.js - null null
+2024-10-30 08:07:09.000 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/_framework/aspnetcore-browser-refresh.js - null null
+2024-10-30 08:07:09.006 +07:00 [INF] HTTP GET /swagger/index.js responded 200 in 3.7955 ms
+2024-10-30 08:07:09.008 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/index.js - 200 null application/javascript;charset=utf-8 7.6771ms
+2024-10-30 08:07:09.021 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 21.3336ms
+2024-10-30 08:07:09.116 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/_vs/browserLink - null null
+2024-10-30 08:07:09.189 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/_vs/browserLink - 200 null text/javascript; charset=UTF-8 73.1435ms
+2024-10-30 08:07:09.418 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/v1/swagger.json - null null
+2024-10-30 08:07:09.573 +07:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 150.0884 ms
+2024-10-30 08:07:09.575 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 156.9901ms
+2024-10-30 08:33:19.101 +07:00 [INF] User profile is available. Using 'C:\Users\sonho\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-10-30 08:33:19.504 +07:00 [INF] Now listening on: https://localhost:7210
+2024-10-30 08:33:19.508 +07:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-10-30 08:33:19.509 +07:00 [INF] Hosting environment: Production
+2024-10-30 08:33:19.509 +07:00 [INF] Content root path: D:\PRM392\prm392-onlineshop\PRM392.OnlineStore
+2024-10-30 08:33:20.141 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/index.html - null null
+2024-10-30 08:33:20.385 +07:00 [INF] HTTP GET /swagger/index.html responded 200 in 137.5575 ms
+2024-10-30 08:33:20.391 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/index.html - 200 null text/html;charset=utf-8 254.5987ms
+2024-10-30 08:33:20.421 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/index.js - null null
+2024-10-30 08:33:20.421 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/_framework/aspnetcore-browser-refresh.js - null null
+2024-10-30 08:33:20.430 +07:00 [INF] HTTP GET /swagger/index.js responded 200 in 6.1415 ms
+2024-10-30 08:33:20.432 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/index.js - 200 null application/javascript;charset=utf-8 10.4163ms
+2024-10-30 08:33:20.437 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/_framework/aspnetcore-browser-refresh.js - 200 13780 application/javascript; charset=utf-8 15.9239ms
+2024-10-30 08:33:20.512 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/_vs/browserLink - null null
+2024-10-30 08:33:20.551 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/_vs/browserLink - 200 null text/javascript; charset=UTF-8 39.8203ms
+2024-10-30 08:33:20.710 +07:00 [INF] Request starting HTTP/2 GET https://localhost:7210/swagger/v1/swagger.json - null null
+2024-10-30 08:33:20.833 +07:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 120.1204 ms
+2024-10-30 08:33:20.834 +07:00 [INF] Request finished HTTP/2 GET https://localhost:7210/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 123.8689ms
+2024-10-30 08:33:47.900 +07:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-30 08:33:47.947 +07:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-10-30 08:33:47.950 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-30 08:33:47.951 +07:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-10-30 08:33:47.969 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-10-30 08:33:47.980 +07:00 [INF] Applying migration '20241030013334_v1'.
+2024-10-30 08:33:48.036 +07:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Categories] (
+    [CategoryID] int NOT NULL IDENTITY,
+    [CategoryName] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK__Categori__19093A2BA147EEE1] PRIMARY KEY ([CategoryID])
+);
+2024-10-30 08:34:09.880 +07:00 [INF] Executed DbCommand (104ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [SalesAppDB];
+2024-10-30 08:34:09.947 +07:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [SalesAppDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2024-10-30 08:34:09.961 +07:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-30 08:34:10.004 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2024-10-30 08:34:10.005 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-10-30 08:34:10.014 +07:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2024-10-30 08:34:10.022 +07:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2024-10-30 08:34:10.030 +07:00 [INF] Applying migration '20241030013334_v1'.
+2024-10-30 08:34:10.066 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Categories] (
+    [CategoryID] int NOT NULL IDENTITY,
+    [CategoryName] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK__Categori__19093A2BA147EEE1] PRIMARY KEY ([CategoryID])
+);
+2024-10-30 08:34:10.068 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [StoreLocations] (
+    [LocationID] int NOT NULL IDENTITY,
+    [Latitude] decimal(9,6) NOT NULL,
+    [Longitude] decimal(9,6) NOT NULL,
+    [Address] nvarchar(255) NOT NULL,
+    CONSTRAINT [PK__StoreLoc__E7FEA4779CA8FC05] PRIMARY KEY ([LocationID])
+);
+2024-10-30 08:34:10.070 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [UserID] int NOT NULL IDENTITY,
+    [Username] nvarchar(50) NOT NULL,
+    [PasswordHash] nvarchar(255) NOT NULL,
+    [Email] nvarchar(100) NOT NULL,
+    [PhoneNumber] nvarchar(15) NULL,
+    [Address] nvarchar(255) NULL,
+    [Role] nvarchar(50) NOT NULL,
+    CONSTRAINT [PK__Users__1788CCAC21F76469] PRIMARY KEY ([UserID])
+);
+2024-10-30 08:34:10.071 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Products] (
+    [ProductID] int NOT NULL IDENTITY,
+    [ProductName] nvarchar(100) NOT NULL,
+    [BriefDescription] nvarchar(255) NULL,
+    [FullDescription] nvarchar(max) NULL,
+    [TechnicalSpecifications] nvarchar(max) NULL,
+    [Price] decimal(18,2) NOT NULL,
+    [ImageURL] nvarchar(255) NULL,
+    [DeletedAt] datetime2 NULL,
+    [CreatedAt] datetime2 NULL,
+    [UpdatedAt] datetime2 NULL,
+    [CategoryID] int NULL,
+    CONSTRAINT [PK__Products__B40CC6ED098ACCE2] PRIMARY KEY ([ProductID]),
+    CONSTRAINT [FK__Products__Catego__3B75D760] FOREIGN KEY ([CategoryID]) REFERENCES [Categories] ([CategoryID])
+);
+2024-10-30 08:34:10.073 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [CartID] int NOT NULL IDENTITY,
+    [UserID] int NULL,
+    [TotalPrice] decimal(18,2) NOT NULL,
+    [Status] nvarchar(50) NOT NULL,
+    CONSTRAINT [PK__Carts__51BCD79715BE33A0] PRIMARY KEY ([CartID]),
+    CONSTRAINT [FK__Carts__UserID__3E52440B] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID])
+);
+2024-10-30 08:34:10.074 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [ChatMessages] (
+    [ChatMessageID] int NOT NULL IDENTITY,
+    [UserID] int NULL,
+    [RecipientID] int NULL,
+    [Message] nvarchar(max) NULL,
+    [SentAt] datetime NOT NULL DEFAULT ((getdate())),
+    CONSTRAINT [PK__ChatMess__9AB61055FB5E89DB] PRIMARY KEY ([ChatMessageID]),
+    CONSTRAINT [FK__ChatMessa__UserI__534D60F1] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID])
+);
+2024-10-30 08:34:10.076 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Notifications] (
+    [NotificationID] int NOT NULL IDENTITY,
+    [UserID] int NULL,
+    [Message] nvarchar(255) NULL,
+    [IsRead] bit NOT NULL,
+    [CreatedAt] datetime NOT NULL DEFAULT ((getdate())),
+    CONSTRAINT [PK__Notifica__20CF2E320E7EBCA6] PRIMARY KEY ([NotificationID]),
+    CONSTRAINT [FK__Notificat__UserI__4F7CD00D] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID])
+);
+2024-10-30 08:34:10.087 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartItems] (
+    [CartItemID] int NOT NULL IDENTITY,
+    [CartID] int NULL,
+    [ProductID] int NULL,
+    [Quantity] int NOT NULL,
+    [Price] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK__CartItem__488B0B2ACFA5F688] PRIMARY KEY ([CartItemID]),
+    CONSTRAINT [FK__CartItems__CartI__412EB0B6] FOREIGN KEY ([CartID]) REFERENCES [Carts] ([CartID]),
+    CONSTRAINT [FK__CartItems__Produ__4222D4EF] FOREIGN KEY ([ProductID]) REFERENCES [Products] ([ProductID])
+);
+2024-10-30 08:34:10.090 +07:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Orders] (
+    [OrderID] int NOT NULL IDENTITY,
+    [CartID] int NULL,
+    [UserID] int NULL,
+    [LocationId] int NULL,
+    [PaymentMethod] nvarchar(50) NOT NULL,
+    [BillingAddress] nvarchar(255) NOT NULL,
+    [OrderStatus] nvarchar(50) NOT NULL,
+    [OrderDate] datetime NOT NULL DEFAULT ((getdate())),
+    CONSTRAINT [PK__Orders__C3905BAF7427A975] PRIMARY KEY ([OrderID]),
+    CONSTRAINT [FK__Orders__CartID__45F365D3] FOREIGN KEY ([CartID]) REFERENCES [Carts] ([CartID]),
+    CONSTRAINT [FK__Orders__LocationID__45F365D3] FOREIGN KEY ([LocationId]) REFERENCES [StoreLocations] ([LocationID]),
+    CONSTRAINT [FK__Orders__UserID__46E78A0C] FOREIGN KEY ([UserID]) REFERENCES [Users] ([UserID])
+);
+2024-10-30 08:34:10.091 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Payments] (
+    [PaymentID] int NOT NULL IDENTITY,
+    [OrderID] int NULL,
+    [Amount] decimal(18,2) NOT NULL,
+    [PaymentDate] datetime NOT NULL DEFAULT ((getdate())),
+    [PaymentStatus] nvarchar(50) NOT NULL,
+    CONSTRAINT [PK__Payments__9B556A5816F52A86] PRIMARY KEY ([PaymentID]),
+    CONSTRAINT [FK__Payments__OrderI__4AB81AF0] FOREIGN KEY ([OrderID]) REFERENCES [Orders] ([OrderID])
+);
+2024-10-30 08:34:10.093 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_CartID] ON [CartItems] ([CartID]);
+2024-10-30 08:34:10.094 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_ProductID] ON [CartItems] ([ProductID]);
+2024-10-30 08:34:10.094 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Carts_UserID] ON [Carts] ([UserID]);
+2024-10-30 08:34:10.095 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_ChatMessages_UserID] ON [ChatMessages] ([UserID]);
+2024-10-30 08:34:10.096 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Notifications_UserID] ON [Notifications] ([UserID]);
+2024-10-30 08:34:10.097 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_CartID] ON [Orders] ([CartID]);
+2024-10-30 08:34:10.097 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_LocationId] ON [Orders] ([LocationId]);
+2024-10-30 08:34:10.098 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Orders_UserID] ON [Orders] ([UserID]);
+2024-10-30 08:34:10.099 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Payments_OrderID] ON [Payments] ([OrderID]);
+2024-10-30 08:34:10.100 +07:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Products_CategoryID] ON [Products] ([CategoryID]);
+2024-10-30 08:34:10.103 +07:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20241030013334_v1', N'8.0.8');
