@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\PRM392.OnlineStore.Application\PRM392.OnlineStore.Application.csproj" />
   </ItemGroup>
 
