@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Serilog.Events;
 using Serilog;
-using PRM392_OnlineStore.Api;
+using PRM392.OnlineStore.Api;
 public static class Program
 {
     public static void Main(string[] args)

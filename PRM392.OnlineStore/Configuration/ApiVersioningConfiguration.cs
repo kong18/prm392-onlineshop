@@ -1,5 +1,5 @@
 ﻿using Asp.Versioning;
-namespace PRM392_OnlineStore.Api.Configuration
+namespace PRM392.OnlineStore.Api.Configuration
 
 
 {

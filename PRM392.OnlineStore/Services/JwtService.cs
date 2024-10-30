@@ -8,7 +8,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace PRM392_OnlineStore.Api.Services
+namespace PRM392.OnlineStore.Api.Services
 {
     public class JwtService : IJwtService
     {
@@ -121,6 +121,6 @@ namespace PRM392_OnlineStore.Api.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-       
+
     }
 }

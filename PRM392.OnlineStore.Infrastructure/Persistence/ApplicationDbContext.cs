@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using PRM392.OnlineStore.Domain.Common.Interfaces;
 using PRM392.OnlineStore.Domain.Entities.Models;
 
@@ -8,13 +10,10 @@ namespace PRM392.OnlineStore.Infrastructure.Persistence;
 
 public partial class ApplicationDbContext : DbContext, IUnitOfWork
 {
-    public ApplicationDbContext()
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
-    }
-
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
+        var migrator = this.Database.GetService<IMigrator>();
+        migrator.Migrate();
     }
 
     public virtual DbSet<Cart> Carts { get; set; }

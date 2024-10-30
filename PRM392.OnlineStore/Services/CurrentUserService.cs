@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using PRM392.OnlineStore.Application.Interfaces;
 using System.Security.Claims;
 
-namespace PRM392_OnlineStore.Api.Services
+namespace PRM392.OnlineStore.Api.Services
 {
     public class CurrentUserService : ICurrentUserService
     {

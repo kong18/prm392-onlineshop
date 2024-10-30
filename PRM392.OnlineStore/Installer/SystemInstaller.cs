@@ -1,7 +1,4 @@
-﻿
-using PRM392_OnlineStore.Api.Configuration;
-using PRM392_OnlineStore.Api.Filters;
-using PRM392.OnlineStore.Application;
+﻿using PRM392.OnlineStore.Application;
 using PRM392.OnlineStore.Infrastructure;
 using PRM392.OnlineStore.Application.FileUpload;
 using PRM392.OnlineStore.Api.Services;
@@ -9,6 +6,8 @@ using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Application.Common.Interfaces;
 using PRM392.OnlineStore.Infrastructure.Repositories;
+using PRM392.OnlineStore.Api.Filters;
+using PRM392.OnlineStore.Api.Configuration;
 namespace PRM392.OnlineStore.Api.Installer
 {
     public class SystemInstaller : IInstaller
@@ -34,7 +33,7 @@ namespace PRM392.OnlineStore.Api.Installer
             {
                 options.AddPolicy("CorsPolicy",
                     builder => builder
-                        .WithOrigins("https://starotvn.com", "https://localhost:7024", "http://localhost:7024")
+                        .WithOrigins("https://localhost:7182")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials());
