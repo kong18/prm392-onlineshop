@@ -8,13 +8,22 @@ using PRM392.OnlineStore.Application.Common.Interfaces;
 using PRM392.OnlineStore.Infrastructure.Repositories;
 using PRM392.OnlineStore.Api.Filters;
 using PRM392.OnlineStore.Api.Configuration;
+using System.Text.Json.Serialization;
 namespace PRM392.OnlineStore.Api.Installer
 {
     public class SystemInstaller : IInstaller
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers(opt => opt.Filters.Add(typeof(ExceptionFilter)));
+            services.AddControllers(opt =>
+            {
+                opt.Filters.Add(typeof(ExceptionFilter));
+            })
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                options.JsonSerializerOptions.WriteIndented = true;
+            });
 
             services.AddSignalR();
             
