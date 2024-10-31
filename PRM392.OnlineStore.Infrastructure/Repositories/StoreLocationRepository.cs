@@ -50,6 +50,20 @@ namespace PRM392.OnlineStore.Infrastructure.Repositories
 
             return storeLocations;
         }
+        public async Task UpdateStoreLocationAsync(StoreLocation storeLocation)
+        {
+            Update(storeLocation);
+            await SaveChangesAsync();
+        }
 
+        public async Task DeleteStoreLocationAsync(int locationId)
+        {
+            var storeLocation = await GetStoreLocationAsync(locationId);
+            if (storeLocation != null)
+            {
+                Remove(storeLocation);
+                await SaveChangesAsync();
+            }
+        }
     }
 }
