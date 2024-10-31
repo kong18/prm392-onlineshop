@@ -28,6 +28,8 @@ namespace PRM392.OnlineStore.Api.Installer
             services.AddScoped<IChatMessageRepository, ChatMessageRepository>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
+            services.AddScoped<IStoreLocationService, StoreLocationService>();
+            services.AddScoped<IStoreLocationRepository, StoreLocationRepository>();
             // CORS policy
             services.AddCors(options =>
             {
