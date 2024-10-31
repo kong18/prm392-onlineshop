@@ -60,6 +60,31 @@ namespace PRM392.OnlineStore.Api.Controllers
                 return NotFound("No store locations found with the specified coordinates.");
             }
         }
+        [HttpPut("update-store-location/{locationId}")]
+        public async Task<IActionResult> UpdateStoreLocation(int locationId, [FromBody] StoreLocationDto storeLocationDto)
+        {
+            var result = await _storeLocationService.UpdateStoreLocationAsync(locationId, storeLocationDto);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(new { errors = result.Errors });
+            }
+
+            return Ok("Store location updated successfully.");
+        }
+
+        [HttpDelete("delete-store-location/{locationId}")]
+        public async Task<IActionResult> DeleteStoreLocation(int locationId)
+        {
+            var result = await _storeLocationService.DeleteStoreLocationAsync(locationId);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(new { errors = result.Errors });
+            }
+
+            return Ok("Store location deleted successfully.");
+        }
 
     }
 }

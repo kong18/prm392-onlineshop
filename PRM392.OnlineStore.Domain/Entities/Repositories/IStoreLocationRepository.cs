@@ -12,5 +12,7 @@ namespace PRM392.OnlineStore.Domain.Entities.Repositories
         Task<StoreLocation?> GetStoreLocationAsync(int locationId);
         Task AddStoreLocation(StoreLocation storeLocation, CancellationToken cancellationToken = default);
         Task<List<StoreLocation>> FindByCoordinatesAsync(decimal? latitude, decimal? longitude, CancellationToken cancellationToken = default);
+        Task UpdateStoreLocationAsync(StoreLocation storeLocation);
+        Task DeleteStoreLocationAsync(int locationId);
     }
 }

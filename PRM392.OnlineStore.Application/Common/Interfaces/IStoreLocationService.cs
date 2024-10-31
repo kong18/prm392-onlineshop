@@ -14,5 +14,7 @@ namespace PRM392.OnlineStore.Application.Common.Interfaces
         string GetDirectionsUrl(decimal userLatitude, decimal userLongitude, int locationId);
         Task<Result> AddStoreLocationAsync(StoreLocationDto storeLocationDto, CancellationToken cancellationToken = default);
         Task<List<StoreLocationDto>> GetStoreLocationsByCoordinatesAsync(decimal? latitude, decimal? longitude, CancellationToken cancellationToken = default);
+        Task<Result> UpdateStoreLocationAsync(int locationId, StoreLocationDto storeLocationDto);
+        Task<Result> DeleteStoreLocationAsync(int locationId);
     }
 }
