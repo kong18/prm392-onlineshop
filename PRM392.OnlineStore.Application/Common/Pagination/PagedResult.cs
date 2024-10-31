@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PRM392.OnlineStore.Application.Pagination
+﻿namespace PRM392.OnlineStore.Application.Pagination
 {
     public class PagedResult<T>
     {
@@ -26,6 +20,7 @@ namespace PRM392.OnlineStore.Application.Pagination
                 PageCount = pageCount,
                 PageSize = pageSize,
                 PageNumber = pageNumber,
+                TotalPage = (int)Math.Ceiling((double)totalCount / pageSize),
                 Data = data,
             };
         }
@@ -38,7 +33,8 @@ namespace PRM392.OnlineStore.Application.Pagination
 
         public int PageNumber { get; set; }
 
-        public IEnumerable<T> Data { get; set; }
+        public int TotalPage { get; set; } // New property for total pages
 
+        public IEnumerable<T> Data { get; set; }
     }
 }

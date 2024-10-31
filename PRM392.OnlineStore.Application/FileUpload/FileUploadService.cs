@@ -48,7 +48,7 @@ namespace PRM392.OnlineStore.Application.FileUpload
         private async Task<string> GenerateJwtTokenAsync()
         {
             var jsonCredentials = $@"
-    {{
+          {{
         ""type"": ""{_firebaseConfig.Type}"",
         ""project_id"": ""{_firebaseConfig.ProjectId}"",
         ""private_key_id"": ""{_firebaseConfig.PrivateKeyId}"",
