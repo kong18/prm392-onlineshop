@@ -32,9 +32,9 @@ namespace PRM392.OnlineStore.Api.Services
             await _hubContext.Clients.All.SendAsync("ReceiveMessage", messageDto);
         }
 
-        public async Task<List<ChatMessageDto>> GetMessagesAsync(int userId, int recipientId)
+        public async Task<List<ChatMessageDto>> GetMessagesAsync(int userId, int recipientId, int pageNumber = 1, int pageSize = 50)
         {
-            var messages = await _chatMessageRepository.GetMessagesForUser(userId, recipientId);
+            var messages = await _chatMessageRepository.GetMessagesForUser(userId, recipientId, pageNumber, pageSize);
             return _mapper.Map<List<ChatMessageDto>>(messages);
         }
     }
