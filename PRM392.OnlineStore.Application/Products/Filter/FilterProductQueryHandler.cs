@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using PRM392.OnlineStore.Application.Common.Pagination;
+using PRM392.OnlineStore.Application.Pagination;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using System.Linq;

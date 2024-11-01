@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.IdentityModel.Tokens;
 using PRM392.OnlineStore.Api.Services;
-using PRM392.OnlineStore.Application.Common.Interfaces;
+using PRM392.OnlineStore.Application.Interfaces;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Repositories;
 using System.IdentityModel.Tokens.Jwt;

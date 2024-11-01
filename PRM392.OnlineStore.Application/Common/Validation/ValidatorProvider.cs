@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRM392.OnlineStore.Application.Common.Validation
+namespace PRM392.OnlineStore.Application.Validation
 {
     public class ValidatorProvider : IValidatorProvider
     {

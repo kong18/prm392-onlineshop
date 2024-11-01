@@ -6,8 +6,8 @@ using System.Net.Mime;
 using PRM392.OnlineStore.Application.Products.GetById;
 using PRM392.OnlineStore.Application.Products;
 using PRM392.OnlineStore.Domain.Entities.Models;
+using PRM392.OnlineStore.Application.Pagination;
 using PRM392.OnlineStore.Application.Products.Filter;
-using PRM392.OnlineStore.Application.Common.Pagination;
 
 namespace PRM392.OnlineStore.Api.Controllers
 {

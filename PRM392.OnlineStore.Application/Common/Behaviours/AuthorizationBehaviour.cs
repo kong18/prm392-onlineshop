@@ -1,11 +1,16 @@
-﻿using MediatR;
+﻿
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using PRM392.OnlineStore.Application.Common.Exceptions;
-using PRM392.OnlineStore.Application.Common.Interfaces;
+using PRM392.OnlineStore.Application.Exceptions;
+using PRM392.OnlineStore.Application.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
-
-namespace PRM392.OnlineStore.Application.Common.Behaviours
+namespace PRM392.OnlineStore.Application.Behaviours
 {
     public class AuthorizationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : notnull

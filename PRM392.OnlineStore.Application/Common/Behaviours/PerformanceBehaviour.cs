@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using PRM392.OnlineStore.Application.Common.Interfaces;
+using PRM392.OnlineStore.Application.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRM392.OnlineStore.Application.Common.Behaviours
+namespace PRM392.OnlineStore.Application.Behaviours
 {
     public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
           where TRequest : notnull

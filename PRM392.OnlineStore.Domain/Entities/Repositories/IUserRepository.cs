@@ -13,6 +13,5 @@ namespace PRM392.OnlineStore.Domain.Entities.Repositories
         bool VerifyPassword(string password, string passwordHash);
         string GeneratePassword();
 
-        Task UpdateRefreshTokenAsync(User user, string newRefreshToken, DateTime expiryDate);
     }
 }

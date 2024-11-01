@@ -14,9 +14,6 @@ public partial class User
     public string Username { get; set; } = null!;
 
     public string PasswordHash { get; set; } = null!;
-    public string? RefreshToken { get; set; }
-    public DateTime RefreshTokenExpiryTime { get; set; }
-    public DateTime RefreshTokenIssuedAt { get; set; }
 
     public string Email { get; set; } = null!;
 
@@ -33,16 +30,4 @@ public partial class User
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-
-    public void SetRefreshToken(string token, DateTime expiry)
-    {
-        RefreshToken = token;
-        RefreshTokenExpiryTime = expiry;
-        RefreshTokenIssuedAt = DateTime.UtcNow;
-    }
-
-    public bool IsRefreshTokenValid(string token)
-    {
-        return RefreshToken == token && RefreshTokenExpiryTime > DateTime.UtcNow;
-    }
 }

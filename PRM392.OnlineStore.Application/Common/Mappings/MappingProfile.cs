@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRM392.OnlineStore.Application.Common.Mappings
+namespace PRM392.OnlineStore.Application.Mappings
 {
     public class MappingProfile : Profile
     {

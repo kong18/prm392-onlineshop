@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRM392.OnlineStore.Application.Common.Exceptions
+namespace PRM392.OnlineStore.Application.Exceptions
 {
     public class ForbiddenAccessException : Exception
     {

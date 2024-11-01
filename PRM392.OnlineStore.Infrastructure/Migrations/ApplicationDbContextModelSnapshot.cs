@@ -365,15 +365,6 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RefreshTokenExpiryTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("RefreshTokenIssuedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasMaxLength(50)

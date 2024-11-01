@@ -12,7 +12,7 @@ using PRM392.OnlineStore.Infrastructure.Persistence;
 namespace PRM392.OnlineStore.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241031140110_v1")]
+    [Migration("20241030162604_v1")]
     partial class v1
     {
         /// <inheritdoc />
@@ -367,15 +367,6 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("RefreshToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("RefreshTokenExpiryTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("RefreshTokenIssuedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Role")
                         .IsRequired()
