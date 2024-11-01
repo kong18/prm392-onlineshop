@@ -1,13 +1,13 @@
 ﻿using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
-using PRM392.OnlineStore.Application.Interfaces;
+using PRM392.OnlineStore.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRM392.OnlineStore.Application.Behaviours
+namespace PRM392.OnlineStore.Application.Common.Behaviours
 {
     public class LoggingBehaviour<TRequest> : IRequestPreProcessor<TRequest>
          where TRequest : notnull

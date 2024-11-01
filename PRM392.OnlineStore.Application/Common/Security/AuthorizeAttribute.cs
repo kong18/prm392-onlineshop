@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRM392.OnlineStore.Application.Security
+namespace PRM392.OnlineStore.Application.Common.Security
 {
     [AttributeUsage(AttributeTargets.All)]
     public class AuthorizeAttribute : Attribute

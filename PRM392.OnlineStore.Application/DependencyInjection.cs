@@ -3,9 +3,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using System.Reflection;
-using PRM392.OnlineStore.Application.Behaviours;
-using PRM392.OnlineStore.Application.Validation;
 using PRM392.OnlineStore.Application.FileUpload;
+using PRM392.OnlineStore.Application.Common.Validation;
+using PRM392.OnlineStore.Application.Common.Behaviours;
 
 
 namespace PRM392.OnlineStore.Application

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PRM392.OnlineStore.Application.Mappings;
+using PRM392.OnlineStore.Application.Common.Mappings;
 using PRM392.OnlineStore.Domain.Entities.Models;
 
 namespace PRM392.OnlineStore.Application.Common.DTO
