@@ -10,6 +10,9 @@ namespace PRM392.OnlineStore.Application.Products.Delete
     public class DeleteProductCommand : IRequest<string>
     {
         public int ProductId { get; set; }   
-
+        public DeleteProductCommand(int productId)
+        {
+            ProductId = productId;
+        }
     }
 }

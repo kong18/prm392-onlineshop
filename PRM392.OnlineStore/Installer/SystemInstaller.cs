@@ -19,12 +19,11 @@ namespace PRM392.OnlineStore.Api.Installer
             {
                 opt.Filters.Add(typeof(ExceptionFilter));
             })
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-                options.JsonSerializerOptions.WriteIndented = true;
-            });
-
+.AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;  // Avoids $id and $values
+    options.JsonSerializerOptions.WriteIndented = true;
+});
             services.AddSignalR();
             
             services.AddApplication(configuration);
@@ -40,7 +39,12 @@ namespace PRM392.OnlineStore.Api.Installer
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IStoreLocationService, StoreLocationService>();
             services.AddScoped<IStoreLocationRepository, StoreLocationRepository>();
-            // CORS policy
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<ICartItemRepository, CartItemRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+                     // CORS policy
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",

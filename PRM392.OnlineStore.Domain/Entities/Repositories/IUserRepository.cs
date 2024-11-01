@@ -12,6 +12,7 @@ namespace PRM392.OnlineStore.Domain.Entities.Repositories
         string HashPassword(string password);
         bool VerifyPassword(string password, string passwordHash);
         string GeneratePassword();
+        Task UpdateRefreshTokenAsync(User user, string newRefreshToken, DateTime expiryDate);
 
     }
 }

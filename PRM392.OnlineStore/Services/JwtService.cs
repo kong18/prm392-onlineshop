@@ -7,6 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using PRM392.OnlineStore.Domain.Entities.Models;
 
 namespace PRM392.OnlineStore.Api.Services
 {
@@ -19,12 +20,12 @@ namespace PRM392.OnlineStore.Api.Services
             _userRepository = userRepository;
         }
 
-        public string CreateToken(string entityId, string role, string email)
+        public string CreateToken(int entityId, string role, string email)
         {
             var claims = new List<Claim>
         {
 
-             new(JwtRegisteredClaimNames.Sub, entityId),
+                 new Claim(JwtRegisteredClaimNames.Sub, entityId.ToString()),
                 new(JwtClaimTypes.Email, email),
                 new(ClaimTypes.Role, role)
 
@@ -102,24 +103,32 @@ namespace PRM392.OnlineStore.Api.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public string CreateToken(string subject, string role, int expiryDays)
+        public async Task<object?> RefreshTokenAsync(TokenRequest tokenRequest)
         {
-            var claims = new[]
+            var principal = GetPrincipalFromExpiredToken(tokenRequest.Token);
+            var userEmail = principal?.FindFirst(JwtClaimTypes.Email)?.Value;
+
+            if (userEmail == null)
             {
-               new Claim(JwtRegisteredClaimNames.Sub, subject),
-                new Claim(ClaimTypes.Role, role),
+                return null; // Token is invalid or doesn't contain email
+            }
 
+            var user = await _userRepository.FindAsync(u => u.Email == userEmail);
+            if (user == null || !user.IsRefreshTokenValid(tokenRequest.RefreshToken))
+            {
+                return null; // User not found or refresh token invalid
+            }
+
+            var newJwtToken = CreateToken(user.UserId, user.Role, user.Email);
+            var newRefreshToken = GenerateRefreshToken();
+
+            await _userRepository.UpdateRefreshTokenAsync(user, newRefreshToken, DateTime.UtcNow.AddDays(30));
+
+            return new
+            {
+                Token = newJwtToken,
+                RefreshToken = newRefreshToken
             };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                expires: DateTime.Now.AddDays(expiryDays),
-                claims: claims,
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
     }
