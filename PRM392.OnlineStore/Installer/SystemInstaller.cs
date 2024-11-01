@@ -35,6 +35,7 @@ namespace PRM392.OnlineStore.Api.Installer
             services.ConfigureSwagger(configuration);
             services.AddScoped<IChatService, ChatService>();
             services.AddScoped<IChatMessageRepository, ChatMessageRepository>();
+            services.AddScoped<FileUploadService, FileUploadService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IStoreLocationService, StoreLocationService>();

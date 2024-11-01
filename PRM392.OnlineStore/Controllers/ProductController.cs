@@ -33,7 +33,7 @@ namespace PRM392.OnlineStore.Api.Controllers
          CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
-            return Ok(new JsonResponse<string>(result));
+            return Ok(new JsonResponse<string>(StatusCodes.Status200OK, result, ""));
         }
         [HttpGet("{id}")]
         [Produces(MediaTypeNames.Application.Json)]
@@ -46,7 +46,7 @@ namespace PRM392.OnlineStore.Api.Controllers
             CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new GetProductByIdQuery(id), cancellationToken);
-            return Ok(new JsonResponse<Product>(result));
+            return Ok(new JsonResponse<Product>(StatusCodes.Status200OK, "Get Success", result));
         }
 
         [HttpGet]
@@ -61,7 +61,7 @@ namespace PRM392.OnlineStore.Api.Controllers
          CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(query, cancellationToken);
-            return Ok(new JsonResponse<PagedResult<Product>>(result));
+            return Ok(new JsonResponse<PagedResult<Product>>(StatusCodes.Status200OK, "Filter Success", result));
         }
 
     }
