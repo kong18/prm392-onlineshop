@@ -1,6 +1,6 @@
 ﻿using PRM392.OnlineStore.Application.Common.DTO;
 using PRM392.OnlineStore.Application.Common.Interfaces;
-using PRM392.OnlineStore.Application.Models;
+using PRM392.OnlineStore.Application.Common.Models;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 

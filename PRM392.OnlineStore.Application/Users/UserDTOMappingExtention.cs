@@ -17,4 +17,4 @@ namespace PRM392.OnlineStore.Application.Users
           => projectFrom.Select(x => x.MapToUserDTO(mapper)).ToList();
     }
 }
-}
+

@@ -2,6 +2,7 @@
 using IdentityModel;
 using Microsoft.IdentityModel.Tokens;
 using PRM392.OnlineStore.Application.Common.Interfaces;
+using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -122,5 +123,32 @@ namespace PRM392.OnlineStore.Api.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<object?> RefreshTokenAsync(TokenRequest tokenRequest)
+        {
+            var principal = GetPrincipalFromExpiredToken(tokenRequest.Token);
+            var userEmail = principal?.FindFirst(JwtClaimTypes.Email)?.Value;
+
+            if (userEmail == null)
+            {
+                return null; // Token is invalid or doesn't contain email
+            }
+
+            var user = await _userRepository.FindAsync(u => u.Email == userEmail);
+            if (user == null || !user.IsRefreshTokenValid(tokenRequest.RefreshToken))
+            {
+                return null; // User not found or refresh token invalid
+            }
+
+            var newJwtToken = CreateToken(user.UserId, user.Role, user.Email);
+            var newRefreshToken = GenerateRefreshToken();
+
+            await _userRepository.UpdateRefreshTokenAsync(user, newRefreshToken, DateTime.UtcNow.AddDays(30));
+
+            return new
+            {
+                Token = newJwtToken,
+                RefreshToken = newRefreshToken
+            };
+        }
     }
 }
