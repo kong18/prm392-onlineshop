@@ -3,11 +3,14 @@ namespace PRM392.OnlineStore.Api.Controllers
 {
     public class JsonResponse<T>
     {
-        public JsonResponse(T value)
+        public JsonResponse(int status, string message, T data)
         {
-            Value = value;
+            Status = status;
+            Message = message;
+            Data = data;
         }
-
-        public T Value { get; set; }
+        public int Status { get; set; }
+        public string Message { get; set; }
+        public T Data { get; set; }
     }
 }

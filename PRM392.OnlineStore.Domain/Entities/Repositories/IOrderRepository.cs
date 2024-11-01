@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PRM392.OnlineStore.Domain.Entities.Repositories
 {
-    public interface ICartRepository : IEFRepository<Cart, Cart>
+    public interface IOrderRepository : IEFRepository<Order, Order>
     {
     }
 }

@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CartItems\**" />
+    <EmbeddedResource Remove="CartItems\**" />
+    <None Remove="CartItems\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FirebaseAdmin" Version="3.0.1" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
@@ -31,12 +37,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PRM392.OnlineStore.Infrastructure\PRM392.OnlineStore.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CartItems\Queries\" />
-    <Folder Include="Carts\Commands\" />
-    <Folder Include="Carts\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -24,11 +24,23 @@ namespace PRM392.OnlineStore.Application.Products
         public string? ImageUrl { get; set; }
 
         public int? CategoryId { get; set; }
+        public CategoryDTO Category { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Product, ProductDto>()
+                .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category));
+        }
+    }
+
+    public class CategoryDTO : IMapFrom<Category>
+    {
+        public string CategoryID { get; set; }
         public string CategoryName { get; set; }
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Product, ProductDto>().ForMember(dto => dto.CategoryName, opt => opt.MapFrom(entity => entity.Category.CategoryName));         
+            profile.CreateMap<Category, CategoryDTO>();
         }
     }
 }
