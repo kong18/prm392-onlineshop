@@ -4,7 +4,8 @@ using PRM392.OnlineStore.Application.Carts.Commands;
 using PRM392.OnlineStore.Domain.Common.Exceptions;
 using System.Net.Mime;
 using FluentValidation;
-using PRM392.OnlineStore.Application.Carts.Queries;
+using PRM392.OnlineStore.Application.Common.Carts.Queries;
+using PRM392.OnlineStore.Application.Common.Carts.Commands;
 
 namespace PRM392.OnlineStore.Api.Controllers
 {

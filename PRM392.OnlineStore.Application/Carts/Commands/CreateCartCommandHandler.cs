@@ -1,16 +1,8 @@
 ﻿using MediatR;
-using PRM392.OnlineStore.Application.Interfaces;
-using PRM392.OnlineStore.Application.Products.Create;
+using PRM392.OnlineStore.Application.Common.Interfaces;
 using PRM392.OnlineStore.Domain.Common.Exceptions;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
-using PRM392.OnlineStore.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace PRM392.OnlineStore.Application.Carts.Commands
 {
     public class CreateCartCommand : IRequest<string>
