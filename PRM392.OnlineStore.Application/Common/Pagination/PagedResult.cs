@@ -1,4 +1,4 @@
-﻿namespace PRM392.OnlineStore.Application.Pagination
+﻿namespace PRM392.OnlineStore.Application.Common.Pagination
 {
     public class PagedResult<T>
     {

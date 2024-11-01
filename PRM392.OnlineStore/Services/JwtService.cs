@@ -1,7 +1,7 @@
 ﻿
 using IdentityModel;
 using Microsoft.IdentityModel.Tokens;
-using PRM392.OnlineStore.Application.Interfaces;
+using PRM392.OnlineStore.Application.Common.Interfaces;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -19,12 +19,12 @@ namespace PRM392.OnlineStore.Api.Services
             _userRepository = userRepository;
         }
 
-        public string CreateToken(string entityId, string role, string email)
+        public string CreateToken(int entityId, string role, string email)
         {
             var claims = new List<Claim>
         {
 
-             new(JwtRegisteredClaimNames.Sub, entityId),
+                 new Claim(JwtRegisteredClaimNames.Sub, entityId.ToString()),
                 new(JwtClaimTypes.Email, email),
                 new(ClaimTypes.Role, role)
 
