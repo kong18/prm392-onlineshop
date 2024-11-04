@@ -9,5 +9,6 @@ namespace PRM392.OnlineStore.Domain.Entities.Repositories
 {
     public interface IProductRepository : IEFRepository<Product,Product>
     {
+        Task<List<Product>> FindAllWithCategoriesAsync(CancellationToken cancellationToken = default);
     }
 }

@@ -49,6 +49,9 @@ namespace PRM392.OnlineStore.Infrastructure.Migrations
                     PasswordHash = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RefreshTokenIssuedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Role = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
