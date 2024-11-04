@@ -44,6 +44,8 @@ namespace PRM392.OnlineStore.Api.Installer
             services.AddScoped<ICartItemRepository, CartItemRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            
                      // CORS policy
             services.AddCors(options =>
             {

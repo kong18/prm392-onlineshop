@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Persistence;
@@ -14,6 +15,13 @@ namespace PRM392.OnlineStore.Infrastructure.Repositories
     {
         public ProductRepository(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
+        }
+        public async Task<List<Product>> FindAllWithCategoriesAsync(CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Set<Product>()
+                .Include(p => p.Category) 
+                .Where(p => p.DeletedAt == null)
+                .ToListAsync(cancellationToken);
         }
     }
 }
