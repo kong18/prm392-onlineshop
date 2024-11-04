@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PRM392.OnlineStore.Application.Categories.Create;
-using PRM392.OnlineStore.Application.Categories.Delete;
 using PRM392.OnlineStore.Application.Categories.Filter;
 using PRM392.OnlineStore.Application.Categories.Update;
 using PRM392.OnlineStore.Application.Products;
@@ -45,20 +44,6 @@ namespace PRM392.OnlineStore.Api.Controllers
             CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
-            return Ok(new JsonResponse<string>(result));
-        }
-
-        [HttpDelete("{id}")]
-        [Produces(MediaTypeNames.Application.Json)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult> DeleteCategory(
-            [FromRoute] int id,
-            CancellationToken cancellationToken = default)
-        {
-            var result = await _mediator.Send(new DeleteCategoryCommand(id), cancellationToken);
             return Ok(new JsonResponse<string>(result));
         }
 
