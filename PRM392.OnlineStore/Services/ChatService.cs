@@ -29,7 +29,12 @@ namespace PRM392.OnlineStore.Api.Services
             var message = _mapper.Map<ChatMessage>(messageDto);
             await _chatMessageRepository.AddMessage(message);
             await _chatMessageRepository.UnitOfWork.SaveChangesAsync();
-            await _hubContext.Clients.All.SendAsync("ReceiveMessage", messageDto);
+            //await _hubContext.Clients.All.SendAsync("ReceiveMessage", messageDto);
+            if (messageDto.RecipientId.HasValue)
+            {
+                var hubContext = _hubContext;
+                await hubContext.Clients.User(messageDto.RecipientId.ToString()).SendAsync("ReceiveMessage", messageDto);
+            }
         }
 
         public async Task<List<ChatMessageDto>> GetMessagesAsync(int userId, int recipientId, int pageNumber = 1, int pageSize = 50)
