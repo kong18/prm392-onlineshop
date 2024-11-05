@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PRM392.OnlineStore.Application.Users.Register
 {
-    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, UserLoginDTO>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, string>
     {
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
@@ -24,7 +24,7 @@ namespace PRM392.OnlineStore.Application.Users.Register
             _mapper = mapper;
         }
 
-        public async Task<UserLoginDTO> Handle(RegisterCommand request, CancellationToken cancellationToken)
+        public async Task<string> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
             var existingUser = await _userRepository.FindAsync(u => u.Email == request.Email,cancellationToken);
 
@@ -48,6 +48,7 @@ namespace PRM392.OnlineStore.Application.Users.Register
                 Role = "Customer" 
                                           
             };
+             _userRepository.Add(newUser);
             await _userRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
             var accessToken = _jwtService.CreateToken(newUser.UserId, newUser.Role, newUser.Email);
@@ -56,12 +57,9 @@ namespace PRM392.OnlineStore.Application.Users.Register
             // Update the refresh token in the user repository
             await _userRepository.UpdateRefreshTokenAsync(newUser, refreshToken, DateTime.UtcNow.AddDays(30));
 
-            // Map the new user to UserLoginDTO
-            var userLoginDto = _mapper.Map<UserLoginDTO>(newUser);
-            userLoginDto.Token = accessToken;
-            userLoginDto.RefreshToken = refreshToken;
+            await _userRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
-            return userLoginDto;
+            return "Registration successful!";
 
         }
 
