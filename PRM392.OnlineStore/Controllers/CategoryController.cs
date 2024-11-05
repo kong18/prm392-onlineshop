@@ -19,7 +19,7 @@ namespace PRM392.OnlineStore.Api.Controllers
         {
             _mediator = mediator;
         }
-
+        //t xoa cai method delete r
         [HttpPost]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
