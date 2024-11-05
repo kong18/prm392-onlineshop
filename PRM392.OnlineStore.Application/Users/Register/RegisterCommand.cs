@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PRM392.OnlineStore.Application.Users.Register
 {
-    public class RegisterCommand : IRequest<UserLoginDTO>
+    public class RegisterCommand : IRequest<string>
     {
         public RegisterCommand() { }
 

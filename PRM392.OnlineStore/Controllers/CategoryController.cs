@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PRM392.OnlineStore.Application.Categories.Create;
+
 using PRM392.OnlineStore.Application.Categories.Filter;
 using PRM392.OnlineStore.Application.Categories.Update;
 using PRM392.OnlineStore.Application.Products;
@@ -46,6 +47,8 @@ namespace PRM392.OnlineStore.Api.Controllers
             var result = await _mediator.Send(command, cancellationToken);
             return Ok(new JsonResponse<string>(result));
         }
+
+        
 
         [HttpGet]
         [Produces(MediaTypeNames.Application.Json)]

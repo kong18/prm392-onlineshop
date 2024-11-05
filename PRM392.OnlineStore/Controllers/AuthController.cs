@@ -49,15 +49,15 @@ namespace PRM392.OnlineStore.Api.Controllers
             try
             {
                 var result = await _mediator.Send(registerCommand, cancellationToken);
-                return Ok(new JsonResponse<UserLoginDTO>(result)); ;
+                return Ok(new JsonResponse<string>(result)); ;
             }
             catch (DuplicationException ex)
             {
-                return BadRequest(new JsonResponse<string>(""));
+                return BadRequest(new JsonResponse<string>("Duplicate Account"));
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new JsonResponse<string>(""));
+                return BadRequest(new JsonResponse<string>("Password not matching"));
             }
 
 

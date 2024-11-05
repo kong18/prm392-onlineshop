@@ -18,6 +18,8 @@ namespace PRM392.OnlineStore.Application.Users
         public string? PhoneNumber { get; set; }
         public string? Address { get; set; }
 
+
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<User, UserDTO>();
