@@ -3,7 +3,6 @@ using PRM392.OnlineStore.Api.Installer;
 using PRM392.OnlineStore.Api.Services;
 using PRM392.OnlineStore.Application;
 using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
-using PRM392.OnlineStore.Infrastructure;
 using PRM392.OnlineStore.Api.Filters;
 using Serilog;
 

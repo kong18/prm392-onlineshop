@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using PRM392.OnlineStore.Api.Filters;
-using PRM392.OnlineStore.Infrastructure;
+using PRM392.OnlineStore.Application;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Reflection;

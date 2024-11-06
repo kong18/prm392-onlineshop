@@ -1,5 +1,6 @@
 ﻿using MediatR;
-using PRM392.OnlineStore.Application.Interfaces;
+using PRM392.OnlineStore.Application.Common.Interfaces;
+using PRM392.OnlineStore.Application.PayOs;
 using PRM392.OnlineStore.Domain.Common.Exceptions;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
@@ -22,13 +23,15 @@ namespace PRM392.OnlineStore.Application.Carts.Commands
         private readonly IOrderRepository _orderRepository;
         private readonly ICurrentUserService _currentUserService;
         private readonly IUserRepository _userRepository;
+        private readonly PayOsServices _payOsServices;
 
-        public CheckoutCartCommandHandler(ICartRepository cartRepository, IOrderRepository orderRepository, ICurrentUserService currentUserService, IUserRepository userRepository)
+        public CheckoutCartCommandHandler(ICartRepository cartRepository, IOrderRepository orderRepository, ICurrentUserService currentUserService, IUserRepository userRepository, PayOsServices payOsServices)
         {
             _cartRepository = cartRepository;
             _orderRepository = orderRepository;
             _currentUserService = currentUserService;
             _userRepository = userRepository;
+            _payOsServices = payOsServices;
         }
 
         public async Task<string> Handle(CheckoutCartCommand request, CancellationToken cancellationToken)
@@ -39,7 +42,7 @@ namespace PRM392.OnlineStore.Application.Carts.Commands
                 throw new UnauthorizedException("User not logged in");
             }
 
-            var userExist = await _userRepository.FindAsync(x => x.UserId.Equals(userId), cancellationToken);
+            var userExist = await _userRepository.FindAsync(x => x.UserId == int.Parse(userId), cancellationToken);
 
             if (userExist is null)
             {
@@ -75,7 +78,14 @@ namespace PRM392.OnlineStore.Application.Carts.Commands
             await _cartRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
             await _orderRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
-            return "Checkout completed successfully";
+            var paymentRequest = new PaymentRequest
+            {
+                Orderid = order.OrderId,
+                Amount = cart.TotalPrice
+            };
+            var paymentLink = await _payOsServices.CreatePaymentLink(paymentRequest);
+
+            return paymentLink;
         }
     }
 

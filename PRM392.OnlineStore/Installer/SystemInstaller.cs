@@ -1,14 +1,13 @@
 ﻿using PRM392.OnlineStore.Application;
-using PRM392.OnlineStore.Infrastructure;
 using PRM392.OnlineStore.Application.FileUpload;
 using PRM392.OnlineStore.Api.Services;
-using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
-using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Application.Common.Interfaces;
-using PRM392.OnlineStore.Infrastructure.Repositories;
 using PRM392.OnlineStore.Api.Filters;
 using PRM392.OnlineStore.Api.Configuration;
 using System.Text.Json.Serialization;
+using PRM392.OnlineStore.Infrastructure;
+using Net.payOS;
+
 namespace PRM392.OnlineStore.Api.Installer
 {
     public class SystemInstaller : IInstaller
@@ -21,7 +20,11 @@ namespace PRM392.OnlineStore.Api.Installer
             })
             .AddJsonOptions(options =>
             {
+<<<<<<< Updated upstream
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+=======
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+>>>>>>> Stashed changes
                 options.JsonSerializerOptions.WriteIndented = true;
             });
 
@@ -34,12 +37,13 @@ namespace PRM392.OnlineStore.Api.Installer
             services.AddInfrastructure(configuration);
             services.ConfigureSwagger(configuration);
             services.AddScoped<IChatService, ChatService>();
-            services.AddScoped<IChatMessageRepository, ChatMessageRepository>();
             services.AddScoped<FileUploadService, FileUploadService>();
             services.AddScoped<INotificationService, NotificationService>();
-            services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IStoreLocationService, StoreLocationService>();
+<<<<<<< Updated upstream
             services.AddScoped<IStoreLocationRepository, StoreLocationRepository>();
+=======
+>>>>>>> Stashed changes
             // CORS policy
             services.AddCors(options =>
             {
@@ -49,6 +53,16 @@ namespace PRM392.OnlineStore.Api.Installer
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials());
+            });
+
+            services.AddSingleton<PayOS>(provider =>
+            {
+                string clientId = configuration["PaymentEnvironment:PAYOS_CLIENT_ID"] ?? throw new Exception("Cannot find PAYOS_CLIENT_ID");
+                string apiKey = configuration["PaymentEnvironment:PAYOS_API_KEY"] ?? throw new Exception("Cannot find PAYOS_API_KEY");
+                string checksumKey = configuration["PaymentEnvironment:PAYOS_CHECKSUM_KEY"] ?? throw new Exception("Cannot find PAYOS_CHECKSUM_KEY");
+
+                return new PayOS(clientId, apiKey, checksumKey);
+
             });
 
             // Register System.Text.Encoding

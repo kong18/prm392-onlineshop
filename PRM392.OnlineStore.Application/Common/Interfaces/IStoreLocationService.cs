@@ -1,5 +1,5 @@
 ﻿using PRM392.OnlineStore.Application.Common.DTO;
-using PRM392.OnlineStore.Application.Models;
+using PRM392.OnlineStore.Application.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

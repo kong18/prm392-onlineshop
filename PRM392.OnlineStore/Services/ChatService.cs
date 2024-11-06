@@ -18,7 +18,7 @@ namespace PRM392.OnlineStore.Api.Services
             _mapper = mapper;
             _hubContext = hubContext;
         }
-        public ChatService(ChatMessageRepository chatMessageRepository, IMapper mapper)
+        public ChatService(IChatMessageRepository chatMessageRepository, IMapper mapper)
         {
             _chatMessageRepository = chatMessageRepository;
             _mapper = mapper;

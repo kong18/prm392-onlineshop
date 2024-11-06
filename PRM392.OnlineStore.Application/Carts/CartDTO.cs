@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PRM392.OnlineStore.Application.Mappings;
+using PRM392.OnlineStore.Application.Common.Mappings;
 using PRM392.OnlineStore.Application.Products;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using System;
@@ -12,6 +12,7 @@ namespace PRM392.OnlineStore.Application.Carts
 {
     public class CartDTO : IMapFrom<Cart>
     {
+        public int CartID { get; set; }
         public List<CartItemDTO> Products { get; set; }
         public decimal TotalPrice { get; set; }
 

@@ -1,16 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
-using PRM392.OnlineStore.Application.Interfaces;
+using PRM392.OnlineStore.Application.Carts;
+using PRM392.OnlineStore.Application.Common.Interfaces;
 using PRM392.OnlineStore.Domain.Common.Exceptions;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
-using PRM392.OnlineStore.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PRM392.OnlineStore.Application.Carts.Queries
+
+namespace PRM392.OnlineStore.Application.Common.Carts.Queries
 {
     public class GetCartByUserIdQuery : IRequest<CartDTO>
     {
@@ -38,7 +34,7 @@ namespace PRM392.OnlineStore.Application.Carts.Queries
                 throw new UnauthorizedException("User not logged in");
             }
 
-            var userExist = await _userRepository.FindAsync(x => x.UserId.Equals(userId), cancellationToken);
+            var userExist = await _userRepository.FindAsync(x => x.UserId == int.Parse(userId), cancellationToken);
 
             if (userExist is null)
             {

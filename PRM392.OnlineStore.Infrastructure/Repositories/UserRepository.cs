@@ -48,5 +48,16 @@ namespace PRM392.OnlineStore.Infrastructure.Repositories
         {
             return BCrypt.Net.BCrypt.Verify(password, passwordHash);
         }
+<<<<<<< Updated upstream
+=======
+
+
+        public async Task UpdateRefreshTokenAsync(User user, string refreshToken, DateTime expiryTime)
+        {
+            user.SetRefreshToken(refreshToken, expiryTime);
+
+            await UnitOfWork.SaveChangesAsync();
+        }
+>>>>>>> Stashed changes
     }
 }

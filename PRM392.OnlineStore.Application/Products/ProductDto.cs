@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PRM392.OnlineStore.Application.Mappings;
+using PRM392.OnlineStore.Application.Common.Mappings;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,8 @@ namespace PRM392.OnlineStore.Application.Products
 {
     public class ProductDto : IMapFrom<Product>
     {
-        public int Id {  get; set; } 
-        public string Name { get; set; }
+        public int ProductId {  get; set; } 
+        public string ProductName { get; set; }
 
         public string? BriefDescription { get; set; }
 

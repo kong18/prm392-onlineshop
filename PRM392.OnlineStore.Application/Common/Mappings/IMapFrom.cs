@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PRM392.OnlineStore.Application.Mappings
+namespace PRM392.OnlineStore.Application.Common.Mappings
 {
     interface IMapFrom<T>
     {

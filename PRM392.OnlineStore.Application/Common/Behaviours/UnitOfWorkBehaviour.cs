@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Input;
 
-namespace PRM392.OnlineStore.Application.Behaviours
+namespace PRM392.OnlineStore.Application.Common.Behaviours
 { /// <summary>
   /// Ensures that all operations processed as part of handling a <see cref="ICommand"/> either
   /// pass or fail as one unit. This behaviour makes it unnecessary for developers to call

@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.IdentityModel.Tokens;
 using PRM392.OnlineStore.Api.Services;
-using PRM392.OnlineStore.Application.Interfaces;
+using PRM392.OnlineStore.Application.Common.Interfaces;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
-using PRM392.OnlineStore.Infrastructure.Repositories;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
@@ -19,8 +18,6 @@ namespace PRM392.OnlineStore.Api.Configuration
         this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddScoped<IUserRepository, UserRepository>();
-
             services.AddTransient<ICurrentUserService, CurrentUserService>();
             services.AddTransient<IJwtService, JwtService>();
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;

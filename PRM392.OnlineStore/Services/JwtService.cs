@@ -1,7 +1,8 @@
 ﻿
 using IdentityModel;
 using Microsoft.IdentityModel.Tokens;
-using PRM392.OnlineStore.Application.Interfaces;
+using PRM392.OnlineStore.Application.Common.Interfaces;
+using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -103,6 +104,8 @@ namespace PRM392.OnlineStore.Api.Services
         }
 
         public string CreateToken(string subject, string role, int expiryDays)
+<<<<<<< Updated upstream
+=======
         {
             var claims = new[]
             {
@@ -122,5 +125,25 @@ namespace PRM392.OnlineStore.Api.Services
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<object?> RefreshTokenAsync(TokenRequest tokenRequest)
+>>>>>>> Stashed changes
+        {
+            var claims = new[]
+            {
+               new Claim(JwtRegisteredClaimNames.Sub, subject),
+                new Claim(ClaimTypes.Role, role),
+
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                expires: DateTime.Now.AddDays(expiryDays),
+                claims: claims,
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
     }
 }

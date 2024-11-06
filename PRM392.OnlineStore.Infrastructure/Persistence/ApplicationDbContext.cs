@@ -199,5 +199,23 @@ public partial class ApplicationDbContext : DbContext, IUnitOfWork
         OnModelCreatingPartial(modelBuilder);
     }
 
+    private void SeedData(ModelBuilder modelBuilder)
+    {
+        // Seed Users
+        modelBuilder.Entity<User>().HasData(
+            new User
+            {
+                UserId = 1,  // Replace with actual ID structure
+                Username = "sonho",
+                Email = "customer@gmail.com",
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("string"),
+                Role = "Customer",
+                RefreshToken = null,
+                RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(30),
+                RefreshTokenIssuedAt = DateTime.UtcNow
+            });
+
+    }
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
