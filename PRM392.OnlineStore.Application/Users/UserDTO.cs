@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using PRM392.OnlineStore.Application.Common.Mappings;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using System;

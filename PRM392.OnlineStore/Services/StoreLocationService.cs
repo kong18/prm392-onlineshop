@@ -98,6 +98,66 @@ namespace PRM392.OnlineStore.Api.Services
                 Address = location.Address
             }).ToList();
         }
+        public async Task<Result> UpdateStoreLocationAsync(int locationId, StoreLocationDto storeLocationDto)
+        {
+            var errors = new List<string>();
+            var existingLocation = await _storeLocationRepository.GetStoreLocationAsync(locationId);
+
+            if (existingLocation == null)
+            {
+                errors.Add("Store location not found.");
+                return Result.Failure(errors);
+            }
+
+            // Validate input
+            if (storeLocationDto.Latitude < -90 || storeLocationDto.Latitude > 90)
+                errors.Add("Latitude must be between -90 and 90.");
+            if (storeLocationDto.Longitude < -180 || storeLocationDto.Longitude > 180)
+                errors.Add("Longitude must be between -180 and 180.");
+            if (string.IsNullOrEmpty(storeLocationDto.Address))
+                errors.Add("Address is required.");
+
+            if (errors.Any())
+                return Result.Failure(errors);
+
+            existingLocation.Latitude = storeLocationDto.Latitude;
+            existingLocation.Longitude = storeLocationDto.Longitude;
+            existingLocation.Address = storeLocationDto.Address;
+
+            try
+            {
+                await _storeLocationRepository.UpdateStoreLocationAsync(existingLocation);
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                errors.Add($"An error occurred while updating the store location: {ex.Message}");
+                return Result.Failure(errors);
+            }
+        }
+
+        public async Task<Result> DeleteStoreLocationAsync(int locationId)
+        {
+            var errors = new List<string>();
+            var existingLocation = await _storeLocationRepository.GetStoreLocationAsync(locationId);
+
+            if (existingLocation == null)
+            {
+                errors.Add("Store location not found.");
+                return Result.Failure(errors);
+            }
+
+            try
+            {
+                await _storeLocationRepository.DeleteStoreLocationAsync(locationId);
+                return Result.Success();
+            }
+            catch (Exception ex)
+            {
+                errors.Add($"An error occurred while deleting the store location: {ex.Message}");
+                return Result.Failure(errors);
+            }
+        }
 
     }
 }

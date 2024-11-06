@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +21,9 @@ public partial class User
     public string Email { get; set; } = null!;
 
     public string? PhoneNumber { get; set; }
-
+    public string? RefreshToken { get; set; }
+    public DateTime RefreshTokenExpiryTime { get; set; }
+    public DateTime RefreshTokenIssuedAt { get; set; }
     public string? Address { get; set; }
 
     public string Role { get; set; } = null!;
@@ -33,8 +35,6 @@ public partial class User
     public virtual ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-<<<<<<< Updated upstream
-=======
 
     public void SetRefreshToken(string token, DateTime expiry)
     {
@@ -47,5 +47,4 @@ public partial class User
     {
         return RefreshToken == token && RefreshTokenExpiryTime > DateTime.UtcNow;
     }
->>>>>>> Stashed changes
 }

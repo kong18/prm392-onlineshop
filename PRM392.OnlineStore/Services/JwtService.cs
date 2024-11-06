@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using PRM392.OnlineStore.Domain.Entities.Models;
 
 namespace PRM392.OnlineStore.Api.Services
 {
@@ -20,12 +21,12 @@ namespace PRM392.OnlineStore.Api.Services
             _userRepository = userRepository;
         }
 
-        public string CreateToken(string entityId, string role, string email)
+        public string CreateToken(int entityId, string role, string email)
         {
             var claims = new List<Claim>
         {
 
-             new(JwtRegisteredClaimNames.Sub, entityId),
+                 new Claim(JwtRegisteredClaimNames.Sub, entityId.ToString()),
                 new(JwtClaimTypes.Email, email),
                 new(ClaimTypes.Role, role)
 
@@ -96,7 +97,7 @@ namespace PRM392.OnlineStore.Api.Services
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-
+https://github.com/kong18/prm392-onlineshop/pull/24/conflict?name=PRM392.OnlineStore%252FServices%252FJwtService.cs&ancestor_oid=1fc98cb5149a9c467d935ddebb632985153cbedd&base_oid=b9442f05d632c6479fc8f828b1b31e0c5bf64260&head_oid=46416b10196f1a2d7b6d0f50468055fa23945f60
                 expires: DateTime.Now.AddDays(60),
                 signingCredentials: creds);
 
@@ -104,29 +105,7 @@ namespace PRM392.OnlineStore.Api.Services
         }
 
         public string CreateToken(string subject, string role, int expiryDays)
-<<<<<<< Updated upstream
-=======
-        {
-            var claims = new[]
-            {
-               new Claim(JwtRegisteredClaimNames.Sub, subject),
-                new Claim(ClaimTypes.Role, role),
-
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_secret));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                expires: DateTime.Now.AddDays(expiryDays),
-                claims: claims,
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
         public async Task<object?> RefreshTokenAsync(TokenRequest tokenRequest)
->>>>>>> Stashed changes
         {
             var claims = new[]
             {

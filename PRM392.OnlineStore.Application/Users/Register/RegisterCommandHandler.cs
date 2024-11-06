@@ -17,16 +17,17 @@ namespace PRM392.OnlineStore.Application.Users.Register
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
         private readonly IMapper _mapper;
-
+        
         public RegisterCommandHandler(IUserRepository userRepository, IJwtService jwtService, IMapper mapper)
         {
             _userRepository = userRepository;
             _jwtService = jwtService;
             _mapper = mapper;
         }
+
         public async Task<UserLoginDTO> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            var existingUser = await _userRepository.FindAsync(u => u.Email == request.Email, cancellationToken);
+            var existingUser = await _userRepository.FindAsync(u => u.Email == request.Email,cancellationToken);
 
             if (existingUser != null)
             {
@@ -39,12 +40,13 @@ namespace PRM392.OnlineStore.Application.Users.Register
 
             var newUser = new User
             {
-                Email = request.Email,             
+                Email = request.Email,
+                Username = request.Username,    
                 PasswordHash = HashPassword(request.Password), 
-                Role = "Customer"         
-                
+                Role = "Customer" 
+                                          
             };
-
+             _userRepository.Add(newUser);
             await _userRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
             var accessToken = _jwtService.CreateToken(newUser.UserId, newUser.Role, newUser.Email);
@@ -60,8 +62,13 @@ namespace PRM392.OnlineStore.Application.Users.Register
 
         private string HashPassword(string password)
         {
+            await _userRepository.UpdateRefreshTokenAsync(newUser, refreshToken, DateTime.UtcNow.AddDays(30));
 
-            return BCrypt.Net.BCrypt.HashPassword(password);
+            await _userRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+
+            return "Registration successful!";
+
+        }
         }
     }
 }

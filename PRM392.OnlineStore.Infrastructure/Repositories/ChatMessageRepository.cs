@@ -9,9 +9,18 @@ public class ChatMessageRepository : RepositoryBase<ChatMessage, ChatMessage, Ap
     public ChatMessageRepository(ApplicationDbContext dbContext, IMapper mapper)
         : base(dbContext, mapper) { }
 
-    public async Task<IEnumerable<ChatMessage>> GetMessagesForUser(int userId, int recipientId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<ChatMessage>> GetMessagesForUser(int userId, int recipientId, int pageNumber = 1, int pageSize = 50, CancellationToken cancellationToken = default)
     {
-        return await FindAllAsync(cm => cm.UserId == userId, cancellationToken);
+        pageSize = pageSize > 50 ? 50 : pageSize;
+
+        return await FindAllAsync(
+            cm => cm.UserId == userId && cm.RecipientId == recipientId,
+            query => query
+                .OrderByDescending(cm => cm.SentAt)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize),
+            cancellationToken
+        );
     }
 
     public async Task AddMessage(ChatMessage chatMessage, CancellationToken cancellationToken = default)

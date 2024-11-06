@@ -19,7 +19,7 @@ namespace PRM392.OnlineStore.Application.Products.Filter
 
         public async Task<PagedResult<Product>> Handle(FilterProductQuery request, CancellationToken cancellationToken)
         {
-            var products = await _productRepository.FindAllAsync(t => t.DeletedAt == null, cancellationToken);
+            var products = await _productRepository.FindAllWithCategoriesAsync(cancellationToken);
             if (!string.IsNullOrEmpty(request.ProductName))
             {
                 products = products.Where(s => s.ProductName.ToLower().Contains(request.ProductName.ToLower())).ToList();

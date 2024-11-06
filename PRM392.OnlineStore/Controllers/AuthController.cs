@@ -1,17 +1,15 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PRM392.OnlineStore.Application.Common.Interfaces;
+using PRM392.OnlineStore.Application.Interfaces;
 using PRM392.OnlineStore.Application.Users.Authenticate;
-using PRM392.OnlineStore.Application.Users.Register;
 using PRM392.OnlineStore.Application.Users;
-using PRM392.OnlineStore.Domain.Common.Exceptions;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Domain.Entities.Models;
+using PRM392.OnlineStore.Application.Users.Register;
+using PRM392.OnlineStore.Domain.Common.Exceptions;
 
 namespace PRM392.OnlineStore.Api.Controllers
 {
-    [ApiController]
-    [Route("api/auth")]
     public class AuthController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
@@ -37,11 +35,12 @@ namespace PRM392.OnlineStore.Api.Controllers
 
             return Ok(result);
         }
+        
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginQuery loginQuery, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(loginQuery, cancellationToken);
-            return Ok(new JsonResponse<UserLoginDTO>(StatusCodes.Status200OK, "Login Success", result));
+            return Ok(new JsonResponse<UserLoginDTO>(result));
         }
 
         [HttpPost("register")]
@@ -50,22 +49,19 @@ namespace PRM392.OnlineStore.Api.Controllers
             try
             {
                 var result = await _mediator.Send(registerCommand, cancellationToken);
-                return Ok(new JsonResponse<UserLoginDTO>(StatusCodes.Status200OK, "Register Success", result)); ;
+                return Ok(new JsonResponse<string>(result)); ;
             }
             catch (DuplicationException ex)
             {
-                return BadRequest(new JsonResponse<string>(StatusCodes.Status400BadRequest, ex.Message, ""));
+                return BadRequest(new JsonResponse<string>("Duplicate Account"));
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new JsonResponse<string>(StatusCodes.Status400BadRequest, ex.Message, ""));
+                return BadRequest(new JsonResponse<string>("Password not matching"));
             }
 
 
         }
 
-
-
     }
 }
-

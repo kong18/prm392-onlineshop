@@ -20,11 +20,7 @@ namespace PRM392.OnlineStore.Api.Installer
             })
             .AddJsonOptions(options =>
             {
-<<<<<<< Updated upstream
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-=======
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
->>>>>>> Stashed changes
                 options.JsonSerializerOptions.WriteIndented = true;
             });
 
@@ -40,11 +36,7 @@ namespace PRM392.OnlineStore.Api.Installer
             services.AddScoped<FileUploadService, FileUploadService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IStoreLocationService, StoreLocationService>();
-<<<<<<< Updated upstream
-            services.AddScoped<IStoreLocationRepository, StoreLocationRepository>();
-=======
->>>>>>> Stashed changes
-            // CORS policy
+            
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
