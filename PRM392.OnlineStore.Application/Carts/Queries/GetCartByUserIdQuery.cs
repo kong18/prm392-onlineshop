@@ -38,7 +38,7 @@ namespace PRM392.OnlineStore.Application.Carts.Queries
                 throw new UnauthorizedException("User not logged in");
             }
 
-            var userExist = await _userRepository.FindAsync(x => x.UserId.Equals(userId), cancellationToken);
+            var userExist = await _userRepository.FindAsync(x => x.UserId == int.Parse(userId), cancellationToken);
 
             if (userExist is null)
             {
