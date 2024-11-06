@@ -16,11 +16,16 @@ namespace PRM392.OnlineStore.Infrastructure
             services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
                 options.UseSqlServer(
-                    configuration.GetConnectionString("local"),
+                    configuration.GetConnectionString("server"),
                     b =>
                     {
                         b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
                         b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+
+                        b.EnableRetryOnFailure(
+                            maxRetryCount: 5, // Number of retry attempts
+                            maxRetryDelay: TimeSpan.FromSeconds(30), // Max delay between retries
+                            errorNumbersToAdd: null); // Optional: specify SQL error numbers to retry on
                     });
                 options.UseLazyLoadingProxies();
             });
@@ -31,7 +36,8 @@ namespace PRM392.OnlineStore.Infrastructure
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICartItemRepository, CartItemRepository>();
-          
+            services.AddTransient<IPaymentRepository, PaymentRepository>();
+        
             services.AddTransient<INotificationRepository, NotificationRepository>();
            
             return services;

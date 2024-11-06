@@ -11,7 +11,7 @@ namespace PRM392.OnlineStore.Application.Products
 {
     public class ProductDto : IMapFrom<Product>
     {
-        public int Id {  get; set; } 
+        public int ProductId {  get; set; } 
         public string Name { get; set; }
 
         public string? BriefDescription { get; set; }

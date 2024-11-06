@@ -50,6 +50,7 @@ namespace PRM392.OnlineStore.Application.Products.Create
                 CategoryId = categoryExist.CategoryId,
                 BriefDescription = request.BriefDescription,
                 FullDescription = request.FullDescription,
+                Price = request.Price,
                 ProductName = request.Name,
                 CreatedAt = DateTime.UtcNow.AddHours(7)
             };

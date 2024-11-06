@@ -9,6 +9,7 @@ using PRM392.OnlineStore.Infrastructure.Repositories;
 using PRM392.OnlineStore.Api.Filters;
 using PRM392.OnlineStore.Api.Configuration;
 using System.Text.Json.Serialization;
+using Net.payOS;
 namespace PRM392.OnlineStore.Api.Installer
 {
     public class SystemInstaller : IInstaller
@@ -55,6 +56,16 @@ namespace PRM392.OnlineStore.Api.Installer
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials());
+            });
+
+            services.AddSingleton<PayOS>(provider =>
+            {
+                string clientId = configuration["PaymentEnvironment:PAYOS_CLIENT_ID"] ?? throw new Exception("Cannot find PAYOS_CLIENT_ID");
+                string apiKey = configuration["PaymentEnvironment:PAYOS_API_KEY"] ?? throw new Exception("Cannot find PAYOS_API_KEY");
+                string checksumKey = configuration["PaymentEnvironment:PAYOS_CHECKSUM_KEY"] ?? throw new Exception("Cannot find PAYOS_CHECKSUM_KEY");
+
+                return new PayOS(clientId, apiKey, checksumKey);
+
             });
 
             // Register System.Text.Encoding

@@ -14,7 +14,7 @@ namespace PRM392.OnlineStore.Application.Carts
         public static CartDTO MapToCartDTO(this Cart projectFrom, IMapper mapper)
           => mapper.Map<CartDTO>(projectFrom);
 
-        public static List<CartDTO> MapToProductDTOList(this IEnumerable<Cart> projectFrom, IMapper mapper)
+        public static List<CartDTO> MapToCartDTOList(this IEnumerable<Cart> projectFrom, IMapper mapper)
           => projectFrom.Select(x => x.MapToCartDTO(mapper)).ToList();
     }
 }

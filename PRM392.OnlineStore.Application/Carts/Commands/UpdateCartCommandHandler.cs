@@ -2,6 +2,7 @@
 using PRM392.OnlineStore.Application.Interfaces;
 using PRM392.OnlineStore.Domain.Common.Exceptions;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
+using PRM392.OnlineStore.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +22,14 @@ namespace PRM392.OnlineStore.Application.Carts.Commands
         private readonly ICartRepository _cartRepository;
         private readonly ICartItemRepository _cartItemRepository;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IUserRepository _userRepository;
 
-        public UpdateCartCommandHandler(ICartRepository cartRepository, ICartItemRepository cartItemRepository, ICurrentUserService currentUserService)
+        public UpdateCartCommandHandler(ICartRepository cartRepository, ICartItemRepository cartItemRepository, ICurrentUserService currentUserService, IUserRepository userRepository)
         {
             _cartRepository = cartRepository;
             _cartItemRepository = cartItemRepository;
             _currentUserService = currentUserService;
+            _userRepository = userRepository;
         }
 
         public async Task<string> Handle(UpdateCartCommand request, CancellationToken cancellationToken)
@@ -35,6 +38,13 @@ namespace PRM392.OnlineStore.Application.Carts.Commands
             if (user == null)
             {
                 throw new UnauthorizedException("User not login");
+            }
+
+            var userExist = await _userRepository.FindAsync(x => x.UserId == int.Parse(user), cancellationToken);
+
+            if (userExist is null)
+            {
+                throw new NotFoundException("User does not exist");
             }
 
             var cartExist = await _cartRepository.FindAsync(x => x.UserId == int.Parse(user) && x.Status == "Active", cancellationToken);

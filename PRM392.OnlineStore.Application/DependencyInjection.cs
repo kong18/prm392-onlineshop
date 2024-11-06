@@ -6,6 +6,7 @@ using System.Reflection;
 using PRM392.OnlineStore.Application.Behaviours;
 using PRM392.OnlineStore.Application.Validation;
 using PRM392.OnlineStore.Application.FileUpload;
+using PRM392.OnlineStore.Application.PayOs;
 
 
 namespace PRM392.OnlineStore.Application
@@ -27,6 +28,7 @@ namespace PRM392.OnlineStore.Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IValidatorProvider, ValidatorProvider>();
             services.AddTransient<FileUploadService>();
+            services.AddTransient<PayOsServices, PayOsServices>();
         
             services.AddMemoryCache();
             return services;
