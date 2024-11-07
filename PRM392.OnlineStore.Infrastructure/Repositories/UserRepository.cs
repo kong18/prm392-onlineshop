@@ -66,5 +66,11 @@ namespace PRM392.OnlineStore.Infrastructure.Repositories
             .ThenInclude(o => o.StoreLocation)
             .FirstOrDefaultAsync(u => u.UserId == userId, cancellationToken);
         }
+        public async Task<List<User>> GetUsersByIdsAsync(List<int> userIds, CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Users
+                .Where(u => userIds.Contains(u.UserId))
+                .ToListAsync(cancellationToken);
+        }
     }
 }
