@@ -10,6 +10,7 @@ namespace PRM392.OnlineStore.Domain.Entities.Repositories
     public interface IStoreLocationRepository : IEFRepository<StoreLocation, StoreLocation>
     {
         Task<StoreLocation?> GetStoreLocationAsync(int locationId);
+        Task<List<StoreLocation>> GetAllStoreLocationsAsync(CancellationToken cancellationToken = default);
         Task AddStoreLocation(StoreLocation storeLocation, CancellationToken cancellationToken = default);
         Task<List<StoreLocation>> FindByCoordinatesAsync(decimal? latitude, decimal? longitude, CancellationToken cancellationToken = default);
         Task UpdateStoreLocationAsync(StoreLocation storeLocation);

@@ -25,8 +25,13 @@ namespace PRM392.OnlineStore.Api.Installer
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;  // Avoids $id and $values
     options.JsonSerializerOptions.WriteIndented = true;
 });
-            services.AddSignalR();
-            
+
+            //services.AddSignalR();
+            services.AddSignalR().AddAzureSignalR(options =>
+            {
+                options.ConnectionString = configuration["AzureSignalRConnectionString"];
+            });
+
             services.AddApplication(configuration);
             services.ConfigureApplicationSecurity(configuration);
             services.ConfigureProblemDetails();
@@ -52,7 +57,7 @@ namespace PRM392.OnlineStore.Api.Installer
             {
                 options.AddPolicy("CorsPolicy",
                     builder => builder
-                        .WithOrigins("https://localhost:7182")
+                        .WithOrigins("https://localhost:7182", "https://prm392onlinestoreapi20241106130615.azurewebsites.net")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials());

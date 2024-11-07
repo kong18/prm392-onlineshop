@@ -21,6 +21,10 @@ namespace PRM392.OnlineStore.Infrastructure.Repositories
         {
             return await FindAsync(location => location.LocationId == locationId);
         }
+        public async Task<List<StoreLocation>> GetAllStoreLocationsAsync(CancellationToken cancellationToken = default)
+        {
+            return await FindAllAsync(cancellationToken);
+        }
         public async Task AddStoreLocation(StoreLocation storeLocation, CancellationToken cancellationToken = default)
         {
             Add(storeLocation);
