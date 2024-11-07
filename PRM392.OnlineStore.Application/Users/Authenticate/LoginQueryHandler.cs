@@ -32,7 +32,7 @@ namespace PRM392.OnlineStore.Application.Users.Authenticate
             {
                 throw new NotFoundException("Invalid username or password.");
             }
-
+           
 
             var accessToken = _jwtService.CreateToken(user.UserId, user.Role, user.Email);
             var refreshToken = _jwtService.GenerateRefreshToken();

@@ -16,7 +16,7 @@ namespace PRM392.OnlineStore.Infrastructure
             services.AddDbContext<ApplicationDbContext>((sp, options) =>
             {
                 options.UseSqlServer(
-                    configuration.GetConnectionString("server"),
+                    configuration.GetConnectionString("local"),
                     b =>
                     {
                         b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
