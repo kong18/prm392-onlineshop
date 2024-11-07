@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PRM392.OnlineStore.Application.Products.GetById
 {
-    public  class GetProductByIdQuery : IRequest<Product>
+    public  class GetProductByIdQuery : IRequest<ProductDto>
     {
         public int ProductId { get; set; }   
         public GetProductByIdQuery(int Id) {

@@ -45,12 +45,12 @@ namespace PRM392.OnlineStore.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<Product>> GetProduct(
+        public async Task<ActionResult<ProductDto>> GetProduct(
             [FromRoute] int id,
             CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(new GetProductByIdQuery(id), cancellationToken);
-            return Ok(new JsonResponse<Product>(result));
+            return Ok((result));
         }
 
         [HttpGet]
@@ -66,7 +66,7 @@ namespace PRM392.OnlineStore.Api.Controllers
         {
             var result = await _mediator.Send(query, cancellationToken);
 
-            var response = new JsonResponse<List<Product>>(
+            var response = new JsonResponse<List<ProductDto>>(
                 data: result.Data.ToList()  
             )
             {
