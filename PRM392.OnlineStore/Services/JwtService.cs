@@ -36,7 +36,7 @@ namespace PRM392.OnlineStore.Api.Services
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(30), // Access token expiration
+                expires: DateTime.Now.AddDays(30), // Access token expiration
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
