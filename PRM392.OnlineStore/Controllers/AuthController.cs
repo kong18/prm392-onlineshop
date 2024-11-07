@@ -40,7 +40,7 @@ namespace PRM392.OnlineStore.Api.Controllers
         public async Task<IActionResult> Login([FromBody] LoginQuery loginQuery, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(loginQuery, cancellationToken);
-            return Ok(new JsonResponse<UserLoginDTO>(result));
+            return Ok(result);
         }
 
         [HttpPost("register")]
@@ -49,15 +49,15 @@ namespace PRM392.OnlineStore.Api.Controllers
             try
             {
                 var result = await _mediator.Send(registerCommand, cancellationToken);
-                return Ok(new JsonResponse<string>(result)); ;
+                return Ok(result); ;
             }
             catch (DuplicationException ex)
             {
-                return BadRequest(new JsonResponse<string>("Duplicate Account"));
+                return BadRequest("Duplicate Account");
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new JsonResponse<string>("Password not matching"));
+                return BadRequest("Password not matching");
             }
 
 
