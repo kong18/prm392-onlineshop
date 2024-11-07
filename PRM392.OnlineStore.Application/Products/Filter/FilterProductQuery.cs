@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PRM392.OnlineStore.Application.Products.Filter
 {
-    public class FilterProductQuery : IRequest<PagedResult< Product>>
+    public class FilterProductQuery : IRequest<PagedResult<ProductDto>>
     {
         public string? ProductName {  get; set; }
         public int? CategoryID { get; set; }
