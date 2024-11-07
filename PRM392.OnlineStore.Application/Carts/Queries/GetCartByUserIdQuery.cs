@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using PRM392.OnlineStore.Application.Interfaces;
+using PRM392.OnlineStore.Application.Products;
 using PRM392.OnlineStore.Domain.Common.Exceptions;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Repositories;
@@ -52,7 +53,7 @@ namespace PRM392.OnlineStore.Application.Carts.Queries
 
             if (activeCart == null)
             {
-                return new CartDTO();
+                return new CartDTO { Products = new List<CartItemDTO>(), TotalPrice = 0 };
             }
 
             // Map the cart entity to the CartDTO

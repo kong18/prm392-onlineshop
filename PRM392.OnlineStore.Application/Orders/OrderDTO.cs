@@ -16,6 +16,7 @@ namespace PRM392.OnlineStore.Application.Orders
 
         public string? UserName { get; set; }
         public string? LocationAddress { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         public string PaymentMethod { get; set; } = null!;
 
@@ -30,6 +31,7 @@ namespace PRM392.OnlineStore.Application.Orders
             profile.CreateMap<Order, OrderDTO>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.Username))
                 .ForMember(dest => dest.LocationAddress, opt => opt.MapFrom(src => src.StoreLocation.Address))
+                .ForMember(dest => dest.TotalPrice, opt => opt.MapFrom(src => src.Cart.TotalPrice))
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(src => src.OrderDate.ToString("dd:MM:yyyy")));
         }
     }
