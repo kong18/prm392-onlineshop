@@ -19,8 +19,8 @@ public class ChatController : ControllerBase
         return Ok();
     }
 
-    [HttpGet("messages/{userId}/{recipientId}")]
-    public async Task<ActionResult<List<ChatMessageDto>>> GetMessages(int userId, int recipientId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 50)
+    [HttpGet("messages/{userId}")]
+    public async Task<ActionResult<List<ChatMessageDto>>> GetMessages(int userId, int? recipientId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 50)
     {
         var messages = await _chatService.GetMessagesAsync(userId, recipientId, pageNumber, pageSize);
         return Ok(messages);

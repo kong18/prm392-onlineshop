@@ -27,7 +27,17 @@ namespace PRM392.OnlineStore.Api.Services
                 Address = storeLocation.Address
             };
         }
+        public async Task<List<StoreLocationDto>> GetAllStoreLocationsAsync(CancellationToken cancellationToken = default)
+        {
+            var storeLocations = await _storeLocationRepository.GetAllStoreLocationsAsync(cancellationToken);
 
+            return storeLocations.Select(location => new StoreLocationDto
+            {
+                Latitude = location.Latitude,
+                Longitude = location.Longitude,
+                Address = location.Address
+            }).ToList();
+        }
         public string GetDirectionsUrl(decimal userLatitude, decimal userLongitude, int locationId)
         {
             var storeLocation = _storeLocationRepository.GetStoreLocationAsync(locationId).Result;

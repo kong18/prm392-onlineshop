@@ -1,40 +1,85 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Microsoft.IdentityModel.Tokens;
 using PRM392.OnlineStore.Application.Common.DTO;
+using PRM392.OnlineStore.Domain.Entities.Models;
+using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public class ChatHub : Hub
 {
     private static Dictionary<string, string> _userConnections = new Dictionary<string, string>();
 
-    public override Task OnConnectedAsync()
+    private readonly IChatMessageRepository _chatMessageRepository;
+
+    public ChatHub(IChatMessageRepository chatMessageRepository)
     {
-        var userId = Context.UserIdentifier;
-        if (!string.IsNullOrEmpty(userId))
-        {
-            _userConnections[userId] = Context.ConnectionId;
-        }
-        return base.OnConnectedAsync();
+        _chatMessageRepository = chatMessageRepository;
     }
 
-    public override Task OnDisconnectedAsync(Exception exception)
+    public override async Task OnConnectedAsync()
     {
         var userId = Context.UserIdentifier;
-        if (!string.IsNullOrEmpty(userId))
+        if (userId != null)
+        {
+            _userConnections[userId] = Context.ConnectionId;
+
+            var pendingMessages = await _chatMessageRepository.GetMessagesForUser(int.Parse(userId), -1, 1, 50);
+            foreach (var message in pendingMessages)
+            {
+                await Clients.Client(Context.ConnectionId).SendAsync("ReceiveMessage", message.UserId, message);
+            }
+        }
+        await base.OnConnectedAsync();
+    }
+
+    public override async Task OnDisconnectedAsync(Exception exception)
+    {
+        var userId = Context.UserIdentifier;
+        if (userId != null)
         {
             _userConnections.Remove(userId);
         }
-        return base.OnDisconnectedAsync(exception);
+        await base.OnDisconnectedAsync(exception);
     }
+
     public async Task SendMessage(ChatMessageDto message)
     {
-        //await Clients.All.SendAsync("ReceiveMessage", message);
-        if (message.RecipientId.HasValue && _userConnections.TryGetValue(message.RecipientId.ToString(), out var connectionId))
+        var userId = Context.UserIdentifier;
+        if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out var parsedUserId))
         {
-            await Clients.Client(connectionId).SendAsync("ReceiveMessage", message);
+            Console.WriteLine("Invalid sender user ID.");
+            return;
+        }
+        if (message.RecipientId.HasValue && !string.IsNullOrEmpty(message.Message))
+        {
+            var chatMessage = new ChatMessage
+            {
+                UserId = int.Parse(userId),
+                RecipientId = message.RecipientId.Value,
+                Message = message.Message,
+                SentAt = DateTime.UtcNow
+            };
+
+            try
+            {
+                await _chatMessageRepository.AddMessage(chatMessage, default);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving message to database: {ex.Message}");
+                return;
+            }
+
+            if (_userConnections.TryGetValue(message.RecipientId.ToString(), out var connectionId))
+            {
+                await Clients.Client(connectionId).SendAsync("ReceiveMessage", userId, message);
+                await Clients.Caller.SendAsync("MessageReceived", "Message sent successfully!");
+            }
         }
         else
         {
-            await Clients.Caller.SendAsync("ReceiveMessage", "User is not connected.");
+            Console.WriteLine("Invalid message or recipient.");
         }
     }
 }

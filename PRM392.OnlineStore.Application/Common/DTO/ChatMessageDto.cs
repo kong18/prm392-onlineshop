@@ -12,7 +12,7 @@ namespace PRM392.OnlineStore.Application.Common.DTO
         public DateTime SentAt { get; set; }
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<ChatMessageDto, ChatMessage>();
+            profile.CreateMap<ChatMessageDto, ChatMessage>().ReverseMap();
         }
     }
 }

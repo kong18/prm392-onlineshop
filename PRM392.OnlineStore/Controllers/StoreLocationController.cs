@@ -24,7 +24,13 @@ namespace PRM392.OnlineStore.Api.Controllers
             }
             return Ok(location);
         }
+        [HttpGet("store-locations")]
+        public async Task<IActionResult> GetAllStoreLocations(CancellationToken cancellationToken = default)
+        {
+            var locations = await _storeLocationService.GetAllStoreLocationsAsync(cancellationToken);
 
+            return Ok(locations);
+        }
         [HttpGet("directions")]
         public IActionResult GetDirections([FromQuery] decimal userLatitude, [FromQuery] decimal userLongitude, int locationId)
         {
