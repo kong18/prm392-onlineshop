@@ -31,7 +31,7 @@ namespace PRM392.OnlineStore.Api.Controllers
            CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
-            return Ok(new JsonResponse<string>(result));
+            return Ok(result);
         }
 
         [HttpPut]
@@ -45,7 +45,7 @@ namespace PRM392.OnlineStore.Api.Controllers
             CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
-            return Ok(new JsonResponse<string>(result));
+            return Ok(result);
         }
 
         
@@ -62,7 +62,7 @@ namespace PRM392.OnlineStore.Api.Controllers
         {
             var query = new FilterCategoryQuery(name);
             var result = await _mediator.Send(query, cancellationToken);
-            return Ok(new JsonResponse<List<CategoryDTO>>(result));
+            return Ok(result);
         }
       
     }

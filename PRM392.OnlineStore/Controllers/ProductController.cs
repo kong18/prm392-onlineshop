@@ -37,7 +37,7 @@ namespace PRM392.OnlineStore.Api.Controllers
          CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
-            return Ok(new JsonResponse<string>(result));
+            return Ok(result);
         }
         [HttpGet("{id}")]
         [Produces(MediaTypeNames.Application.Json)]
