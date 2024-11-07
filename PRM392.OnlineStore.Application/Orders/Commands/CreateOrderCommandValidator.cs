@@ -11,11 +11,14 @@ namespace PRM392.OnlineStore.Application.Orders.Commands
     {
         public CreateOrderCommandValidator()
         {
-            RuleFor(command => command.ProductId)
-                .GreaterThan(0).WithMessage("ProductId must greater than 0");
+            RuleForEach(command => command.CartItems).ChildRules(item =>
+            {
+                item.RuleFor(i => i.ProductId)
+                    .GreaterThan(0).WithMessage("ProductId must be greater than 0.");
 
-            RuleFor(command => command.Quantity)
-                .GreaterThan(0).WithMessage("Quantity must greater than 0");
+                item.RuleFor(i => i.Quantity)
+                    .GreaterThan(0).WithMessage("Quantity must be greater than 0.");
+            });
 
             RuleFor(command => command.LocationId)
                 .GreaterThan(0).WithMessage("LocationId must greater than 0");
