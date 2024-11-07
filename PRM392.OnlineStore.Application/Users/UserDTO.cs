@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PRM392.OnlineStore.Application.Mappings;
+using PRM392.OnlineStore.Application.Orders;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,13 @@ namespace PRM392.OnlineStore.Application.Users
         public string? PhoneNumber { get; set; }
         public string? Address { get; set; }
 
+        public List<OrderDTO> Orders { get; set; } = new();
 
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<User, UserDTO>();
+            profile.CreateMap<User, UserDTO>()
+                .ForMember(dest => dest.Orders, opt => opt.MapFrom(src => src.Orders));
         }
     }
 }

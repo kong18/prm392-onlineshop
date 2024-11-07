@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Infrastructure.Persistence;
@@ -12,9 +13,10 @@ namespace PRM392.OnlineStore.Infrastructure.Repositories
 {
     public class UserRepository : RepositoryBase<User, User, ApplicationDbContext>, IUserRepository
     {
+        private readonly ApplicationDbContext _dbContext;
         public UserRepository(ApplicationDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
-
+            _dbContext = dbContext;
         }
         public string GeneratePassword()
         {
@@ -46,6 +48,7 @@ namespace PRM392.OnlineStore.Infrastructure.Repositories
 
         public bool VerifyPassword(string password, string passwordHash)
         {
+           
             return BCrypt.Net.BCrypt.Verify(password, passwordHash);
         }
 
@@ -54,6 +57,14 @@ namespace PRM392.OnlineStore.Infrastructure.Repositories
             user.SetRefreshToken(refreshToken, expiryTime);
 
             await UnitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<User?> GetUserWithOrdersAsync(int userId, CancellationToken cancellationToken = default)
+        {
+            return await _dbContext.Users
+            .Include(u => u.Orders)
+            .ThenInclude(o => o.StoreLocation)
+            .FirstOrDefaultAsync(u => u.UserId == userId, cancellationToken);
         }
     }
 }

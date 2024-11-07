@@ -65,8 +65,7 @@ namespace PRM392.OnlineStore.Application.Users.Register
 
         private string HashPassword(string password)
         {
-            // Implement your password hashing logic here
-            // For example, using BCrypt:
+            
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
     }
