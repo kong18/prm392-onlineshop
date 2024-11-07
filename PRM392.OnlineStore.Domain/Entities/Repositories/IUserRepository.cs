@@ -14,6 +14,7 @@ namespace PRM392.OnlineStore.Domain.Entities.Repositories
         string GeneratePassword();
         Task UpdateRefreshTokenAsync(User user, string newRefreshToken, DateTime expiryDate);
         Task<User?> GetUserWithOrdersAsync(int userId, CancellationToken cancellationToken = default);
+        Task<List<User>> GetUsersByIdsAsync(List<int> userIds, CancellationToken cancellationToken = default);
 
     }
 }
