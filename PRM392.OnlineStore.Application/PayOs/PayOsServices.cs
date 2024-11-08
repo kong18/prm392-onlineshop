@@ -82,7 +82,7 @@ namespace PRM392.OnlineStore.Application.PayOs
                 }
                 else
                 {
-                    payment.PaymentStatus = "Failed";
+                    payment.PaymentStatus = "Cancelled";
                     _paymentRepository.Update(payment);
                     await _paymentRepository.UnitOfWork.SaveChangesAsync();
                 }
