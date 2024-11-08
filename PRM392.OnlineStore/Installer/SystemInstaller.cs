@@ -13,6 +13,7 @@ using Net.payOS;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.Extensions.Options;
+using Firebase.Database;
 namespace PRM392.OnlineStore.Api.Installer
 {
     public class SystemInstaller : IInstaller
@@ -82,9 +83,9 @@ namespace PRM392.OnlineStore.Api.Installer
                 {
                     Credential = GoogleCredential.FromJson(configuration["FirebaseConfig"]),
                 });
-
                 return firebaseApp;
             });
+            services.AddSingleton(new FirebaseClient("https://prm392-11333-default-rtdb.firebaseio.com/"));
 
             // Register System.Text.Encoding
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
