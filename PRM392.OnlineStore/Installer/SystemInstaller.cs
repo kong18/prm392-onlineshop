@@ -10,6 +10,9 @@ using PRM392.OnlineStore.Api.Filters;
 using PRM392.OnlineStore.Api.Configuration;
 using System.Text.Json.Serialization;
 using Net.payOS;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using Microsoft.Extensions.Options;
 namespace PRM392.OnlineStore.Api.Installer
 {
     public class SystemInstaller : IInstaller
@@ -71,6 +74,16 @@ namespace PRM392.OnlineStore.Api.Installer
 
                 return new PayOS(clientId, apiKey, checksumKey);
 
+            });
+
+            services.AddSingleton<FirebaseApp>(provider =>
+            {
+                var firebaseApp = FirebaseApp.Create(new AppOptions()
+                {
+                    Credential = GoogleCredential.FromJson(configuration["FirebaseConfig"]),
+                });
+
+                return firebaseApp;
             });
 
             // Register System.Text.Encoding
