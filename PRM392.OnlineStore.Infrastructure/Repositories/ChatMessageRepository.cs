@@ -47,6 +47,14 @@ public class ChatMessageRepository : RepositoryBase<ChatMessage, ChatMessage, Ap
             return latestMessages;
         }
     }
+    public async Task<List<int>> GetRecipientsForUser(int userId, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.ChatMessages
+            .Where(cm => cm.UserId == userId && cm.RecipientId.HasValue)
+        .Select(cm => cm.RecipientId.Value)
+        .Distinct()
+        .ToListAsync(cancellationToken);
+    }
 
     public async Task AddMessage(ChatMessage chatMessage, CancellationToken cancellationToken = default)
     {

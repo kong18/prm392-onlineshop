@@ -25,4 +25,15 @@ public class ChatController : ControllerBase
         var messages = await _chatService.GetMessagesAsync(userId, recipientId, pageNumber, pageSize);
         return Ok(messages);
     }
+    [HttpGet("recipients/{userId}")]
+    public async Task<ActionResult<List<RecipientInfo>>> GetRecipients(int userId)
+    {
+        var recipients = await _chatService.GetRecipientsForUserAsync(userId);
+        if (recipients == null || recipients.Count == 0)
+        {
+            return NotFound("No recipients found for this user.");
+        }
+
+        return Ok(recipients);
+    }
 }
