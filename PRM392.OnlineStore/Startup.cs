@@ -24,12 +24,6 @@ namespace PRM392.OnlineStore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.InstallerServicesInAssembly(Configuration);
-            FirebaseApp.Create(new AppOptions()
-            {
-                Credential = GoogleCredential.FromFile("C:\\Users\\Asus\\Downloads\\prm392-11333-fcb968f30232.json")
-            });
-
-            services.AddSingleton(new FirebaseClient("https://prm392-11333-default-rtdb.firebaseio.com/"));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -37,7 +37,7 @@ namespace PRM392.OnlineStore.Application.PayOs
             ItemData item = new ItemData("Mì tôm hảo hảo ly", 1, 1000);
             List<ItemData> items = new List<ItemData> { item };
 
-            PaymentData paymentData = new PaymentData(orderCode, (int)model.Amount, $"Pay for {model.Amount / 100}", items, "cancelUrl", "returnUrl");
+            PaymentData paymentData = new PaymentData(orderCode, (int)model.Amount, $"Pay for {model.Amount / 100}", items, "cancelUrl", "https://www.youtube.com/");
             CreatePaymentResult createPaymentResult = await _payOs.createPaymentLink(paymentData);
 
             // Insert new payment record into Payments table
