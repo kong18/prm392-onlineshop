@@ -1,10 +1,14 @@
 ﻿using AutoMapper;
 using PRM392.OnlineStore.Application.Common.DTO;
-using Microsoft.AspNetCore.SignalR;
+//using Microsoft.AspNetCore.SignalR;
 using PRM392.OnlineStore.Domain.Entities.Repositories.PRM392.OnlineStore.Domain.Entities.Repositories;
 using PRM392.OnlineStore.Domain.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using PRM392.OnlineStore.Domain.Entities.Repositories;
+using Firebase.Database;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using Firebase.Database.Query;
 
 namespace PRM392.OnlineStore.Api.Services
 {
@@ -12,29 +16,61 @@ namespace PRM392.OnlineStore.Api.Services
     {
         private readonly IChatMessageRepository _chatMessageRepository;
         private readonly IMapper _mapper;
-        private readonly IHubContext<ChatHub> _hubContext;
         private readonly IUserRepository _userRepository;
+        private readonly FirebaseClient _firebaseClient;
 
-        public ChatService(IChatMessageRepository chatMessageRepository, IMapper mapper, IHubContext<ChatHub> hubContext, IUserRepository userRepository)
+        public ChatService(IChatMessageRepository chatMessageRepository, IMapper mapper, IUserRepository userRepository, FirebaseClient firebaseClient)
         {
             _chatMessageRepository = chatMessageRepository;
             _mapper = mapper;
-            _hubContext = hubContext;
             _userRepository = userRepository;
+            _firebaseClient = firebaseClient;
         }
 
         public async Task SendMessageAsync(ChatMessageDto messageDto)
         {
-            var message = _mapper.Map<ChatMessage>(messageDto);
-
+            var message = new ChatMessage
+            {
+                UserId = messageDto.UserId,
+                RecipientId = messageDto.RecipientId,
+                Message = messageDto.Message,
+                SentAt = DateTime.UtcNow
+            };
             await _chatMessageRepository.AddMessage(message);
             await _chatMessageRepository.UnitOfWork.SaveChangesAsync();
 
-            if (messageDto.RecipientId.HasValue)
+            try
             {
-                await _hubContext.Clients.User(messageDto.RecipientId.ToString())
-                    .SendAsync("ReceiveMessage", messageDto);
+                var firebaseMessage = new
+                {
+                    UserId = messageDto.UserId,
+                    RecipientId = messageDto.RecipientId,
+                    Message = messageDto.Message,
+                    SentAt = DateTime.UtcNow
+                };
+
+                await _firebaseClient
+                    .Child("chat_messages")
+                    .Child($"{messageDto.UserId}_{messageDto.RecipientId}")
+                    .PostAsync(firebaseMessage);
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error posting to Firebase: " + ex.Message);
+                throw;
+            }
+        }
+
+        public async Task<List<ChatMessageDto>> GetMessagesAsync(int userId, int? recipientId)
+        {
+            var messages = await _chatMessageRepository.GetMessagesForUser(userId, recipientId);
+            return messages.Select(m => new ChatMessageDto
+            {
+                UserId = m.UserId,
+                RecipientId = m.RecipientId,
+                Message = m.Message,
+                SentAt = m.SentAt
+            }).ToList();
         }
         public async Task<List<RecipientInfo>> GetRecipientsForUserAsync(int userId)
         {
